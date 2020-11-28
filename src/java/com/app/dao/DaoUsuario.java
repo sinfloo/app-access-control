@@ -97,7 +97,16 @@ public class DaoUsuario implements IMantenimiento {
             ps.setString(4,us.getApellidos());
             ps.setString(5,us.getTelefono());
             ps.setString(6,us.getCorreo());           
-            ps.execute();         
+            ps.execute();  
+            
+            sql = "INSERT INTO usuario (USUARIO, PASSWORD, ESTADO, IDPERSONA, IDROL) VALUES(?,?,?,?,?)";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, us.getUsuario());
+            ps.setString(2, us.getPassword());
+            ps.setInt(3, 1);
+            ps.setInt(4, us.getId());
+            ps.setInt(5, 2);
+            ps.execute();
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.getMessage(), e);
         } finally {

@@ -86,7 +86,7 @@
                 <div class="card">
                     <div class="card-header">Registro de Usuarios</div>
                     <div class="card-body">
-                        <form action="Controlador?menu=Usuario">
+                        <form action="Controlador?menu=Usuario" method="POST">
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">IDUSER</label>
                                 <div class="col-sm-10">
