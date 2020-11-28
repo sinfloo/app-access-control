@@ -38,6 +38,7 @@ public class UsuarioImplement {
             Usuario u=new Usuario();
             u.setDni("");
             u.setId(Integer.valueOf(request.getParameter("txtId")));
+            u.setDni(request.getParameter("txtDni"));
             u.setNombres(request.getParameter("txtNombres"));
             u.setApellidos(request.getParameter("txtApellidos"));
             u.setTelefono(request.getParameter("txtTelefono"));

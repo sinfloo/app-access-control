@@ -86,9 +86,17 @@ public class DaoUsuario implements IMantenimiento {
     public int add(Object u) {
         Connection con = Conexion.getConnection();
         String sql;
+        PreparedStatement ps;
         try {
             sql = "INSERT INTO persona (IDPERSONA, DNI, NOMBRES, APELLIDOS, TELEFONO, CORREO) VALUES(?,?,?,?,?,?)";
-            PreparedStatement ps = con.prepareStatement(sql);
+            Usuario us=(Usuario)u;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,us.getId());
+            ps.setString(2,us.getDni());
+            ps.setString(3,us.getNombres());
+            ps.setString(4,us.getApellidos());
+            ps.setString(5,us.getTelefono());
+            ps.setString(6,us.getCorreo());           
             ps.execute();         
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.getMessage(), e);
