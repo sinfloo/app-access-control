@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
         <link href="css/principal.css" rel="stylesheet" type="text/css"/>   
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>Principal</title>
     </head>
     <body>
@@ -99,7 +102,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -110,10 +113,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <table class="table table-hover">
+                <table id="myTable" class="table table-hover table-responsive">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>ID</th>
+                            <th>TIPO DOC.</th>
+                            <th>NRO.DOC</th>
                             <th>NOMBRES</th>
                             <th>APELLIDOS</th>
                             <th>TELEFONO</th>
@@ -126,18 +131,18 @@
                     <tbody>
                         <c:forEach var="us" items="${Usuarios}">
                             <tr>
-                                <td>${us.idUser}</td>
+                                <td class="text-center">${us.idUser}</td>
+                                <td class="text-center">${us.tipodoc.tipo}</td>
+                                <td class="text-center">${us.nrodoc}</td>
                                 <td>${us.nombres}</td>
                                 <td>${us.apellidos}</td>
                                 <td>${us.telefono}</td>
                                 <td>${us.correo}</td>
                                 <td>${us.usuario}</td>
                                 <td>${us.rol.descripcion}</td>
-                                <td>
-                                    <form action="Controlador?menu=Usuario">
-                                        <button class="btn btn-danger" type="submit" name="accion" value="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="btn btn-warning" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
-                                    </form>
+                                <td class="text-center">                                  
+                                    <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idUser}, 'Usuario', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
                                 </td>
                             </tr>
                         </c:forEach>                        
@@ -151,8 +156,12 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
+        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script></script>
         <script>
-            $('.carousel').carousel();
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
         </script>
     </body>
 </html>

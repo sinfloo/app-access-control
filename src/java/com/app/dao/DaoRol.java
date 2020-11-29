@@ -52,7 +52,7 @@ public class DaoRol implements IMantenimiento {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id,int idper) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

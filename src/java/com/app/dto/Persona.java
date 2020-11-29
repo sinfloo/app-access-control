@@ -2,22 +2,15 @@ package com.app.dto;
 
 public class Persona {
     private int id;
-    private String dni;
+    private TipoDoc tipodoc;
+    private String nrodoc;
+    private String carnetext;
     private String nombres;
     private String apellidos;
     private String telefono;
     private String correo;
 
     public Persona() {
-    }
-
-    public Persona(int id, String dni, String nombres, String apellidos, String telefono, String correo) {
-        this.id = id;
-        this.dni = dni;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
-        this.correo = correo;
     }
 
     public int getId() {
@@ -28,12 +21,28 @@ public class Persona {
         this.id = id;
     }
 
-    public String getDni() {
-        return dni;
+    public TipoDoc getTipodoc() {
+        return tipodoc;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setTipodoc(TipoDoc tipodoc) {
+        this.tipodoc = tipodoc;
+    }
+
+    public String getNrodoc() {
+        return nrodoc;
+    }
+
+    public void setNrodoc(String nrodoc) {
+        this.nrodoc = nrodoc;
+    }
+
+    public String getCarnetext() {
+        return carnetext;
+    }
+
+    public void setCarnetext(String carnetext) {
+        this.carnetext = carnetext;
     }
 
     public String getNombres() {
@@ -67,5 +76,6 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
     
 }

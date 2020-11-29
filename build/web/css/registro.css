@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #F8F9F9 ;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.card{
+    background: #D7DBDD;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 1.9; 
+}

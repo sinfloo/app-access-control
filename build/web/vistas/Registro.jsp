@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
         <link href="css/principal.css" rel="stylesheet" type="text/css"/>   
+        <link href="css/registro.css" rel="stylesheet" type="text/css"/>
         <title>Principal</title>
     </head>
     <body>
@@ -82,68 +83,79 @@
             </nav>
         </div>
         <div class="container">
-            <div class="col col-sm-8">
+            <div class="col col-sm-6">
                 <div class="card">
-                    <div class="card-header">Registro de Usuarios</div>
+                    <div class="card-header" style="font-weight:bold"><i class="fa fa-user"></i> Registro de Usuarios</div>
                     <div class="card-body">
                         <form action="Controlador?menu=Usuario" method="POST">
-                            <div class="form-group row">
+                            <!--<div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">IDUSER</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="txtId" class="form-control form-control-sm">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">DNI</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtDni" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">NOMBRES</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtNombres" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">APELLIDOS</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtApellidos" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">TELFONO</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtTelefono" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">CORREO</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtCorreo" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">USUARIO</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtUsuario" class="form-control form-control-sm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">ROL</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control form-control-sm" name="txtRol">
-                                        <option>SELECCIONAR</option>
-                                        <option>Administrador</option>
-                                        <option>Personal</option>
-                                        <option>Seguridad</option>
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TIPO DOC.</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm" name="txtTipo">
+                                        <option value="0">SELECCIONAR</option>
+                                        <c:forEach var="t" items="${TiposDoc}">                                            
+                                            <option value="${t.id}">${t.tipo}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"></label>
-                                <div class="col-sm-10">
-                                    <button class="btn btn-outline-success" type="submit" name="accion" value="Agregar">Guardar</button>
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">DNI</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtNroDoc" maxlength="8" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">NOMBRES</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtNombres" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">APELLIDOS</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtApellidos" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TELFONO</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtTelefono" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">CORREO</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtCorreo" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">USUARIO</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="txtUsuario" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">ROL</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm" name="txtRol">
+                                        <option value="0">SELECCIONAR</option>
+                                        <c:forEach var="r" items="${Roles}">                                            
+                                            <option value="${r.id}">${r.descripcion}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"></label>
+                                <div class="col-sm-9">
+                                    <button class="btn btn-success btn-lg" type="submit" name="accion" value="Agregar">Guardar Registro</button>
                                     <a class="btn btn-link" href="Controlador?menu=Usuario&accion=Listar">Volver</a>
                                 </div>
                             </div>

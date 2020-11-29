@@ -6,6 +6,6 @@ public interface IMantenimiento {
     public Object getFindId(int id);
     public int add(Object u);
     public int update(Object u);
-    public void delete(int id);
+    public void delete(int id,int idper);
         
 }
