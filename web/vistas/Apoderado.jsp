@@ -85,10 +85,11 @@
             </nav>
         </div>
         <div class="container">
-            <div class="form-group">
+            <div class="form-group d-flex">
                 <form action="Controlador?menu=Apoderado" method="POST">
                     <button class="btn btn-primary" type="submit" name="accion" value="Nuevo"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
-                </form>                
+                </form>
+                <h4 class="ml-2 mt-1">Lista de Apoderados</h4>
             </div>           
             <div class="form-group">
                 <table id="myTable" class="table table-hover table-responsive">
@@ -101,7 +102,7 @@
                             <th>APELLIDOS</th>
                             <th>TELEFONO</th>
                             <th>CORREO</th>
-                            <th>HIJOS</th>
+                            <th>USUARIOS</th>
                             <th>ACCION</th>
                         </tr>
                     </thead>

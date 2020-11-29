@@ -37,7 +37,6 @@ public class ApoderadoImplement {
         try {
             listCombos(request);
             request.setAttribute("Title", "Registro de datos del apoderado");
-            request.setAttribute("Users", new DaoUsuario().getAll());
             request.setAttribute("Apoderado", new Apoderado());
             request.getRequestDispatcher("/vistas/RegistroApoderado.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
@@ -85,7 +84,7 @@ public class ApoderadoImplement {
     public static void executeDelete(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.valueOf(request.getParameter("id"));
         int idper = Integer.valueOf(request.getParameter("idper"));
-        new DaoUsuario().delete(id, idper);
+        new DaoApoderado().delete(id, idper);
     }
 
     private static void listCombos(HttpServletRequest request) {

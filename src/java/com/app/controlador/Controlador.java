@@ -82,19 +82,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Personal")) {
             switch (accion) {
                 case "Listar":
-                   UsuarioImplement.executeListar(request, response);
+                   PersonalImplement.executeListar(request, response);
                    break;
                 case "Nuevo":                    
-                    UsuarioImplement.executeNew(request, response);
+                    PersonalImplement.executeNew(request, response);
                     break;                
                 case "Editar":
-                    UsuarioImplement.executeEdit(request, response);
+                    PersonalImplement.executeEdit(request, response);
                     break;
                 case "Guardar":
-                    UsuarioImplement.executeSave(request, response);
+                    PersonalImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
-                    UsuarioImplement.executeDelete(request, response);
+                    PersonalImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);

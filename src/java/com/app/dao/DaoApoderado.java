@@ -112,8 +112,21 @@ public class DaoApoderado implements IMantenimiento {
 
     @Override
     public void delete(int id, int idper) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = Conexion.getConnection();
+        String sql;
+        try {
+            sql = "DELETE FROM APODERADO WHERE IDAPODERADO=" + id;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+
+            sql = "DELETE FROM PERSONA WHERE IDPERSONA=" + idper;
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.getMessage(), e);
+        } finally {
+            Conexion.close(con);
+        }
     }
 
-  
 }
