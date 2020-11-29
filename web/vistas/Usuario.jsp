@@ -30,14 +30,14 @@
                                 Registros
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Registro de Usuarios</a>
-                                <a class="dropdown-item" href="#">Registro de Apoderados</a>
-                                <a class="dropdown-item" href="#">Registro de Matricula</a>
-                                <a class="dropdown-item" href="#">Registro de Personal</a>
-                                <a class="dropdown-item" href="#">Registro de Pagos</a>
-                                <a class="dropdown-item" href="#">Registro de Deudas</a>
+                                <a class="dropdown-item" href="Controlador?menu=Usuario&accion=Listar">Registro de Usuarios</a>
+                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
+                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
+                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Registro de Pagos</a>
+                                <a class="dropdown-item" href="Controlador?menu=Deuda&accion=Listar">Registro de Deudas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Historial de Pagos </a>
+                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Historial de Pagos </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -117,7 +117,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>ID</th>
-                            <th>TIPO DOC.</th>
+                            <th>T.DOC.</th>
                             <th>NRO.DOC</th>
                             <th>NOMBRES</th>
                             <th>APELLIDOS</th>
@@ -140,9 +140,16 @@
                                 <td>${us.correo}</td>
                                 <td>${us.usuario}</td>
                                 <td>${us.rol.descripcion}</td>
-                                <td class="text-center">                                  
+                                <td class="text-center d-flex">                                  
                                     <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idUser}, 'Usuario', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
+                                    <form class="ml-1" action="Controlador?menu=Usuario" method="POST">
+                                        <input type="hidden" name="txtIdUser" value="${us.idUser}">
+                                        <input type="hidden" name="txtIdPer" value="${us.id}">
+                                        <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
+                                    </form>                                    
+                                    <!--<form class="ml-1">
+                                        <button class="btn btn-primary btn-sm" type="submit" name="accion" value="VerDetalle"><i class="fas fa-eye"></i></button>
+                                    </form>-->                                  
                                 </td>
                             </tr>
                         </c:forEach>                        
@@ -157,7 +164,9 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script></script>
+        <script>
+
+        </script>
         <script>
             $(document).ready(function () {
                 $('#myTable').DataTable();

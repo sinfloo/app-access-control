@@ -1,4 +1,3 @@
-
 package com.app.controlador;
 
 import com.app.dao.DaoRol;
@@ -16,65 +15,75 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UsuarioImplement {
-    private static final Logger LOGGER=Logger.getLogger(UsuarioImplement.class.getName());
-    public static void executeListar(HttpServletRequest request, HttpServletResponse response){
-        try {    
-            List<Usuario>usuarios=(List<Usuario>)new DaoUsuario().getAll();
+
+    private static final Logger LOGGER = Logger.getLogger(UsuarioImplement.class.getName());
+
+    public static void executeListar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            List<Usuario> usuarios = (List<Usuario>) new DaoUsuario().getAll();
             request.setAttribute("Usuarios", usuarios);
             request.getRequestDispatcher("vistas/Usuario.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
-           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    public static void executeNew(HttpServletRequest request, HttpServletResponse response){
-        try {    
-            List<Rol>roles=(List<Rol>)new DaoRol().getAll();
-            request.setAttribute("Roles", roles);
-            List<TipoDoc>tipos=(List<TipoDoc>)new DaoTipoDoc().getAll();
-            request.setAttribute("TiposDoc", tipos);
+
+    public static void executeNew(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            listCombos(request);
+            request.setAttribute("Title", "Registro de Usuario");
+            request.setAttribute("User", new Usuario());
             request.getRequestDispatcher("/vistas/Registro.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
-           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    public static void executeAdd(HttpServletRequest request, HttpServletResponse response){
-        try {        
-            Usuario u=new Usuario();
-            /**u.setId(Integer.valueOf(request.getParameter("txtId")));**/            
-            u.setTipodoc(new TipoDoc(Integer.valueOf(request.getParameter("txtTipo")),null));
+
+    public static void executeSave(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Usuario u = new Usuario();
+            u.setId(Integer.valueOf(request.getParameter("txtIdPer")));
+            u.setTipodoc(new TipoDoc(Integer.valueOf(request.getParameter("txtTipo")), null));
             u.setNrodoc(request.getParameter("txtNroDoc"));
             u.setNombres(request.getParameter("txtNombres"));
             u.setApellidos(request.getParameter("txtApellidos"));
             u.setTelefono(request.getParameter("txtTelefono"));
+            u.setIdUser(Integer.valueOf(request.getParameter("txtIdUser")));
             u.setCorreo(request.getParameter("txtCorreo"));
             u.setUsuario(request.getParameter("txtUsuario"));
             u.setPassword(u.getUsuario().concat("2020"));
-            u.setRol(new Rol(Integer.valueOf(request.getParameter("txtRol")),null));
-            int r=new DaoUsuario().add(u);            
+            u.setRol(new Rol(Integer.valueOf(request.getParameter("txtRol")), null));
+            if (u.getIdUser()==0&&u.getId()==0) {
+                new DaoUsuario().add(u);
+            } else {
+                new DaoUsuario().update(u);
+            }
             request.getRequestDispatcher("Controlador?menu=Usuario&accion=Listar").forward(request, response);
         } catch (ServletException | IOException ex) {
-           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    public static void executeEdit(HttpServletRequest request, HttpServletResponse response){
-        try {    
-            List<Usuario>usuarios=(List<Usuario>)new DaoUsuario().getAll();
-            request.setAttribute("Usuarios", usuarios);
-            request.getRequestDispatcher("vistas/Usuario.jsp").forward(request, response);
+
+    public static void executeEdit(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            listCombos(request);
+            request.setAttribute("Title", "Actualización de Datos del Usuario");
+            request.setAttribute("User", new DaoUsuario().getFindId(Integer.valueOf(request.getParameter("txtIdUser"))));
+            request.getRequestDispatcher("vistas/Registro.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
-           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-    public static void executeUpdate(HttpServletRequest request, HttpServletResponse response){
-        try {             
-            request.getRequestDispatcher("Controlador?menu=Usuario&accion=Listar").forward(request, response);
-        } catch (ServletException | IOException ex) {
-           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
-        }
+    public static void executeDelete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.valueOf(request.getParameter("id"));
+        int idper = Integer.valueOf(request.getParameter("idper"));
+        new DaoUsuario().delete(id, idper);
     }
-    public static void executeDelete(HttpServletRequest request, HttpServletResponse response){
-        int id=Integer.valueOf(request.getParameter("id"));
-        int idper=Integer.valueOf(request.getParameter("idper"));
-        new DaoUsuario().delete(id,idper);
+
+    private static void listCombos(HttpServletRequest request) {
+        List<Rol> roles = (List<Rol>) new DaoRol().getAll();
+        request.setAttribute("Roles", roles);
+        List<TipoDoc> tipos = (List<TipoDoc>) new DaoTipoDoc().getAll();
+        request.setAttribute("TiposDoc", tipos);
     }
 }

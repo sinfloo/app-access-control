@@ -29,13 +29,13 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="Controlador?menu=Usuario&accion=Listar">Registro de Usuarios</a>
-                                <a class="dropdown-item" href="#">Registro de Apoderados</a>
-                                <a class="dropdown-item" href="#">Registro de Matricula</a>
-                                <a class="dropdown-item" href="#">Registro de Personal</a>
-                                <a class="dropdown-item" href="#">Registro de Pagos</a>
-                                <a class="dropdown-item" href="#">Registro de Deudas</a>
+                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
+                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
+                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Registro de Pagos</a>
+                                <a class="dropdown-item" href="Controlador?menu=Deuda&accion=Listar">Registro de Deudas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Historial de Pagos </a>
+                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Historial de Pagos </a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -85,60 +85,59 @@
         <div class="container">
             <div class="col col-sm-6">
                 <div class="card">
-                    <div class="card-header" style="font-weight:bold"><i class="fa fa-user"></i> Registro de Usuarios</div>
+                    <div class="card-header" style="font-weight:bold"><i class="fa fa-user"></i> ${Title}</div>
                     <div class="card-body">
                         <form action="Controlador?menu=Usuario" method="POST">
-                            <!--<div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">IDUSER</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="txtId" class="form-control form-control-sm">
-                                </div>
-                            </div>-->
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TIPO DOC.</label>
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="txtTipo">
                                         <option value="0">SELECCIONAR</option>
-                                        <c:forEach var="t" items="${TiposDoc}">                                            
-                                            <option value="${t.id}">${t.tipo}</option>
+                                        <c:forEach var="t" items="${TiposDoc}">  
+                                            <c:if test="${User.tipodoc.id==t.id}">
+                                                <option selected="" value="${t.id}">${t.tipo}</option>
+                                            </c:if>
+                                            <c:if test="${User.tipodoc.id!=t.id}">
+                                                <option value="${t.id}">${t.tipo}</option>
+                                            </c:if>                                            
                                         </c:forEach>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">DNI</label>
+                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">NRO DOC.</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtNroDoc" maxlength="8" class="form-control form-control-sm">
+                                    <input type="text" value="${User.nrodoc}" name="txtNroDoc" maxlength="8" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">NOMBRES</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtNombres" class="form-control form-control-sm">
+                                    <input type="text" value="${User.nombres}" name="txtNombres" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">APELLIDOS</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtApellidos" class="form-control form-control-sm">
+                                    <input type="text" value="${User.apellidos}" name="txtApellidos" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TELFONO</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtTelefono" class="form-control form-control-sm">
+                                    <input type="text" value="${User.telefono}" name="txtTelefono" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">CORREO</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtCorreo" class="form-control form-control-sm">
+                                    <input type="email" value="${User.correo}" name="txtCorreo" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">USUARIO</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="txtUsuario" class="form-control form-control-sm">
+                                    <input type="text" value="${User.usuario}" name="txtUsuario" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -146,16 +145,23 @@
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="txtRol">
                                         <option value="0">SELECCIONAR</option>
-                                        <c:forEach var="r" items="${Roles}">                                            
-                                            <option value="${r.id}">${r.descripcion}</option>
+                                        <c:forEach var="r" items="${Roles}">
+                                            <c:if test="${User.rol.id==r.id}">
+                                                <option selected="" value="${r.id}">${r.descripcion}</option>
+                                            </c:if>
+                                            <c:if test="${User.rol.id!=r.id}">
+                                                <option value="${r.id}">${r.descripcion}</option>
+                                            </c:if> 
                                         </c:forEach>
                                     </select>
                                 </div>
                             </div>
+                            <input type="hidden" name="txtIdUser" value="${User.idUser}">
+                            <input type="hidden" name="txtIdPer" value="${User.id}">
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm"></label>
                                 <div class="col-sm-9">
-                                    <button class="btn btn-success btn-lg" type="submit" name="accion" value="Agregar">Guardar Registro</button>
+                                    <button class="btn btn-success btn-lg" type="submit" name="accion" value="Guardar">Guardar Registro</button>
                                     <a class="btn btn-link" href="Controlador?menu=Usuario&accion=Listar">Volver</a>
                                 </div>
                             </div>

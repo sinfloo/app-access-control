@@ -69,7 +69,7 @@ public class DaoUsuario implements IMantenimiento {
                 u.setCorreo(rs.getString("p.CORREO"));
                 u.setRol(new Rol(rs.getInt("r.IDROL"), rs.getString("r.DESCRIPCION")));
                 u.setId(rs.getInt("p.IDPERSONA"));
-                u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"),rs.getString("t.TIPO")));
+                u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"), rs.getString("t.TIPO")));
                 listUsers.add(u);
             }
         } catch (SQLException e) {
@@ -85,27 +85,30 @@ public class DaoUsuario implements IMantenimiento {
         Usuario u = new Usuario();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT u.IDUSUARIO,U.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
-                    + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION"
-                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r"
-                    + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDUSUARIO=?";
+            String sql = "SELECT p.IDPERSONA,p.IDTIPODOC,p.NRODOC,p.NOMBRES,p.APELLIDOS,"
+                    + " p.TELEFONO,p.CORREO,u.IDUSUARIO,u.USUARIO,u.PASSWORD,u.ESTADO,u.IDROL"
+                    + " FROM USUARIO u INNER JOIN persona p"
+                    + " where u.IDPERSONA=p.IDPERSONA AND u.IDUSUARIO=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                u.setIdUser(rs.getInt(1));
-                u.setUsuario(rs.getString(2));
-                u.setNombres(rs.getString(3));
-                u.setApellidos(rs.getString(4));
-                u.setNrodoc(rs.getString(5));
-                u.setTelefono(rs.getString(6));
-                u.setCorreo(rs.getString(7));
-                u.setRol(new Rol(rs.getInt(8), rs.getString(9)));
+                u.setId(rs.getInt("p.IDPERSONA"));
+                u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"), null));
+                u.setNrodoc(rs.getString("p.NRODOC"));
+                u.setNombres(rs.getString("p.NOMBRES"));
+                u.setApellidos(rs.getString("p.APELLIDOS"));
+                u.setTelefono(rs.getString("p.TELEFONO"));
+                u.setCorreo(rs.getString("p.CORREO"));
+                u.setIdUser(rs.getInt("u.IDUSUARIO"));
+                u.setUsuario(rs.getString("u.USUARIO"));
+                u.setPassword(rs.getString("u.PASSWORD"));
+                u.setRol(new Rol(rs.getInt("u.IDROL"), null));
             }
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.getMessage(), e);
         } finally {
-            Conexion.close(con);
+            LOGGER.log(Level.INFO, "Mensaje!");
         }
         return u;
     }
@@ -114,14 +117,14 @@ public class DaoUsuario implements IMantenimiento {
     public int add(Object u) {
         Usuario us = (Usuario) u;
         int r = 0;
-        if (!isRegistry(!"".equals(us.getNrodoc())?us.getNrodoc():null)) {
+        if (!isRegistry(!"".equals(us.getNrodoc()) ? us.getNrodoc() : null)) {
             Connection con = Conexion.getConnection();
             String sql;
             PreparedStatement ps;
             int idPersona;
             try {
                 sql = "INSERT INTO persona (IDTIPODOC,NRODOC, NOMBRES, APELLIDOS, TELEFONO, CORREO) VALUES(?,?,?,?,?,?)";
-                ps = con.prepareStatement(sql);                
+                ps = con.prepareStatement(sql);
                 ps.setInt(1, us.getTipodoc().getId());
                 ps.setString(2, us.getNrodoc());
                 ps.setString(3, us.getNombres());
@@ -155,7 +158,38 @@ public class DaoUsuario implements IMantenimiento {
 
     @Override
     public int update(Object u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Usuario us = (Usuario) u;
+        int r = 0;
+        Connection con = Conexion.getConnection();
+        String sql;
+        PreparedStatement ps;
+        try {
+            sql = "UPDATE persona SET IDTIPODOC = ?, NRODOC = ?, NOMBRES = ?, APELLIDOS = ?,"
+                    + " TELEFONO = ?, CORREO = ? WHERE IDPERSONA = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, us.getTipodoc().getId());
+            ps.setString(2, us.getNrodoc());
+            ps.setString(3, us.getNombres());
+            ps.setString(4, us.getApellidos());
+            ps.setString(5, us.getTelefono());
+            ps.setString(6, us.getCorreo());
+            ps.setInt(7, us.getId());
+            ps.executeUpdate();
+
+            sql = "UPDATE usuario SET USUARIO = ?, PASSWORD = ?, IDROL = ? WHERE IDUSUARIO = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, us.getUsuario());
+            ps.setString(2, us.getPassword());
+            ps.setInt(3, us.getRol().getId());
+            ps.setInt(4, us.getIdUser());
+            r = ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.getMessage(), e);
+        } finally {
+            Conexion.close(con);
+        }
+        return r;
     }
 
     @Override
@@ -195,7 +229,7 @@ public class DaoUsuario implements IMantenimiento {
                 usuario.setNrodoc(rs.getString("NRODOC"));
                 usuario.setNombres(rs.getString("NOMBRES"));
             }
-            if (usuario.getNrodoc()!= null) {
+            if (usuario.getNrodoc() != null) {
                 isRegistered = true;
             }
         } catch (SQLException e) {

@@ -6,6 +6,14 @@ public class Usuario extends Persona{
     private String password;
     private Rol rol;
 
+    public Usuario(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public Usuario() {
+    }
+
+    
     public int getIdUser() {
         return idUser;
     }
