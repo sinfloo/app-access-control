@@ -117,8 +117,7 @@
                     <thead>
                         <tr class="text-center">
                             <th>ID</th>
-                            <th>T.DOC.</th>
-                            <th>NRO.DOC</th>
+                            <th>DOCUMENTO</th>
                             <th>NOMBRES</th>
                             <th>APELLIDOS</th>
                             <th>TELEFONO</th>
@@ -132,7 +131,6 @@
                         <c:forEach var="us" items="${Usuarios}">
                             <tr>
                                 <td class="text-center">${us.idUser}</td>
-                                <td class="text-center">${us.tipodoc.tipo}</td>
                                 <td class="text-center">${us.nrodoc}</td>
                                 <td>${us.nombres}</td>
                                 <td>${us.apellidos}</td>
@@ -146,10 +144,12 @@
                                         <input type="hidden" name="txtIdUser" value="${us.idUser}">
                                         <input type="hidden" name="txtIdPer" value="${us.id}">
                                         <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
-                                    </form>                                    
-                                    <!--<form class="ml-1">
-                                        <button class="btn btn-primary btn-sm" type="submit" name="accion" value="VerDetalle"><i class="fas fa-eye"></i></button>
-                                    </form>-->                                  
+                                    </form>                             
+                                    <form class="ml-1" action="Controlador?menu=Usuario" method="POST">
+                                        <input type="hidden" name="txtIdUser" value="${us.idUser}">
+                                        <input type="hidden" name="txtIdPer" value="${us.id}">
+                                        <button class="btn btn-primary btn-sm" type="submit" name="accion" value="VerHistorialPago"><i class="fas fa-eye"></i></button>
+                                    </form>                                
                                 </td>
                             </tr>
                         </c:forEach>                        

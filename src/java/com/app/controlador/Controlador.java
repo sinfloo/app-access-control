@@ -33,6 +33,9 @@ public class Controlador extends HttpServlet {
                 case "Eliminar":
                     UsuarioImplement.executeDelete(request, response);
                     break;
+                case "VerHistorialPago":
+                    UsuarioImplement.executeVerHistorial(request, response);
+                    break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);
             }

@@ -7,8 +7,7 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
-        <link href="css/principal.css" rel="stylesheet" type="text/css"/>   
-        <script src="js/funciones.js" type="text/javascript"></script>
+        <link href="css/principal.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <title>Principal</title>
@@ -85,77 +84,49 @@
             </nav>
         </div>
         <div class="container">
-            <div class="form-group">
-                <form action="Controlador?menu=Usuario" method="POST">
+            <div class="form-group d-flex">
+                <!--<form action="Controlador?menu=Personal" method="POST">
                     <button class="btn btn-primary" type="submit" name="accion" value="Nuevo"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
-                </form>                
+                </form> -->
+                <h4 class="ml-2 mt-1">HISTORIAL DE PAGOS</h4>
             </div>
             <div class="form-group">
-                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-user-plus"></i> Nuevo Registro</button>-->
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" >
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <table id="myTable" class="table table-hover table-responsive">
+                <table id="myTable" class="table table-hover">
                     <thead>
                         <tr class="text-center">
                             <th>ID</th>
-                            <th>DOCUMENTO</th>
-                            <th>NOMBRES</th>
-                            <th>APELLIDOS</th>
-                            <th>TELEFONO</th>
-                            <th>CORREO</th>
-                            <th>USUARIO</th>
-                            <th>ROL</th>
-                            <th>ACCION</th>
+                            <th>TIPO</th>
+                            <th>NRO.TICKET</th>
+                            <th>FECHA</th>
+                            <th>DESCRIPCION</th>                            
+                            <th>IMPORTE</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="us" items="${Usuarios}">
-                            <tr>
-                                <td class="text-center">${us.idUser}</td>
-                                <td class="text-center">${us.nrodoc}</td>
-                                <td>${us.nombres}</td>
-                                <td>${us.apellidos}</td>
-                                <td>${us.telefono}</td>
-                                <td>${us.correo}</td>
-                                <td>${us.usuario}</td>
-                                <td>${us.rol.descripcion}</td>
-                                <td class="text-center d-flex">                                  
-                                    <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idUser}, 'Usuario', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
-                                    <form class="ml-1" action="Controlador?menu=Usuario" method="POST">
-                                        <input type="hidden" name="txtIdUser" value="${us.idUser}">
-                                        <input type="hidden" name="txtIdPer" value="${us.id}">
-                                        <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
-                                    </form>                             
-                                    <form class="ml-1" action="Controlador?menu=Usuario" method="POST">
-                                        <input type="hidden" name="txtIdUser" value="${us.idUser}">
-                                        <input type="hidden" name="txtIdPer" value="${us.id}">
-                                        <button class="btn btn-primary btn-sm" type="submit" name="accion" value="VerHistorialPago"><i class="fas fa-eye"></i></button>
-                                    </form>                                
-                                </td>
+                        <c:forEach var="per" items="${Historial}">
+                            <tr class="text-center">
+                                <td class="text-center">${per.id}</td>
+                                <td class="text-center">${per.operacion.tipooperacion==1?'DEUDA':'PAGO'}</td>
+                                <td class="text-center">${per.operacion.nroticket}</td>
+                                <td class="text-center">${per.operacion.fecha}</td>
+                                <td>${per.operacion.descripcion}</td>
+                                <c:if test="${per.operacion.tipooperacion==2}">
+                                    <td style="color: red;font-weight: bold">- ${per.operacion.importe}</td>
+                                </c:if>
+                                <c:if test="${per.operacion.tipooperacion==1}">
+                                    <td style="color: blue;font-weight: bold">+ ${per.operacion.importe}</td>
+                                </c:if>                                
                             </tr>
-                        </c:forEach>                        
+                        </c:forEach>                         
                     </tbody>
                 </table>
-
+                <hr>
+                <div class="text-center">
+                    <button class="btn btn-warning bold"><i class="far fa-credit-card"></i> Registrar Deuda</button>
+                    <button class="btn btn-success bold"><i class="fab fa-amazon-pay"></i> Registrar Pago</button>
+                    <label class="bold">Total Deuda:</label>
+                    <input type="text" class="btn btn-outline-danger" readonly="" value="S/.${total}" style="text-align: center;font-weight: bold;font-size: 18px;">                    
+                </div>                                 
             </div>
         </div>
         <div class="footer-copyright">
@@ -164,12 +135,13 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
         <script>
 
         </script>
         <script>
             $(document).ready(function () {
-                $('#myTable').DataTable();
+                $('#myTables').DataTable();
             });
         </script>
     </body>

@@ -1,8 +1,10 @@
 package com.app.controlador;
 
+import com.app.dao.DaoHistorial;
 import com.app.dao.DaoRol;
 import com.app.dao.DaoTipoDoc;
 import com.app.dao.DaoUsuario;
+import com.app.dto.Historial;
 import com.app.dto.Rol;
 import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
@@ -85,5 +87,18 @@ public class UsuarioImplement {
         request.setAttribute("Roles", roles);
         List<TipoDoc> tipos = (List<TipoDoc>) new DaoTipoDoc().getAll();
         request.setAttribute("TiposDoc", tipos);
+    }
+    
+    public static void executeVerHistorial(HttpServletRequest request, HttpServletResponse response) {
+        int iduser = Integer.valueOf(request.getParameter("txtIdUser"));
+        //int idper = Integer.valueOf(request.getParameter("txtIdPer"));
+        try {
+            List<Historial>historial=new DaoHistorial().getAll(iduser);
+            request.setAttribute("Historial", historial);
+            request.setAttribute("total", !historial.isEmpty()?historial.get(0).getTotaldeuda():0.00);
+            request.getRequestDispatcher("vistas/Historial.jsp").forward(request, response);
+        } catch (ServletException | IOException ex) {
+           LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+        }
     }
 }
