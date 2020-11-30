@@ -91,7 +91,7 @@
             </div>
             <div class="form-group">
                 <div class="card" style="padding:20px">
-                    <table id="myTable" class="table table-hover">
+                    <table id="myTable" class="table table-responsive" style="width: 100%">
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
