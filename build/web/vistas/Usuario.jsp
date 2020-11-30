@@ -31,13 +31,12 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="Controlador?menu=Usuario&accion=Listar">Registro de Usuarios</a>
-                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
-                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Registro de Pagos</a>
-                                <a class="dropdown-item" href="Controlador?menu=Deuda&accion=Listar">Registro de Deudas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Historial de Pagos </a>
+                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -85,38 +84,18 @@
             </nav>
         </div>
         <div class="container">
-            <div class="form-group">
+            <div class="form-group d-flex">
                 <form action="Controlador?menu=Usuario" method="POST">
                     <button class="btn btn-primary" type="submit" name="accion" value="Nuevo"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
-                </form>                
-            </div>
-            <div class="form-group">
-                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-user-plus"></i> Nuevo Registro</button>-->
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" >
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </form>  
+                <h4 class="ml-2 mt-1">Lista de Usuarios</h4>
+            </div>            
             <div class="form-group">
                 <table id="myTable" class="table table-hover table-responsive">
                     <thead>
                         <tr class="text-center">
                             <th>ID</th>
+                            <th>TIPO</th>
                             <th>DOCUMENTO</th>
                             <th>NOMBRES</th>
                             <th>APELLIDOS</th>
@@ -131,6 +110,7 @@
                         <c:forEach var="us" items="${Usuarios}">
                             <tr>
                                 <td class="text-center">${us.idUser}</td>
+                                <td class="text-center">${us.tipodoc.tipo}</td>
                                 <td class="text-center">${us.nrodoc}</td>
                                 <td>${us.nombres}</td>
                                 <td>${us.apellidos}</td>

@@ -16,6 +16,7 @@
                     <div class="card">  
                         <form action="ControladorLogin" method="POST">
                             <div class="card-content center">
+                                <img src="img/logo1.jpeg" width="100%">
                                 <span class="card-title">INICIAR SESSION</span>
                                 <div class="row">
                                     <div class="input-field col s12 m12">
@@ -41,10 +42,6 @@
                                 </div>                                                                    
                             </div>
                         </form>
-                        <div class="card-action center">
-                            <p>Bienvenidos al sitema de control de accesos. Sé parte de las buenas practicas 
-                                con el uso de la tecnología no compartas tus datos personales.</p>                                                                  
-                        </div>
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">Por el momento no esta disponible<i class="material-icons right">close</i></span>
                             

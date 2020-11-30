@@ -106,40 +106,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Pago")) {
             switch (accion) {
                 case "Listar":
-                   UsuarioImplement.executeListar(request, response);
+                   PagoImplement.executeListar(request, response);
                    break;
                 case "Nuevo":                    
-                    UsuarioImplement.executeNew(request, response);
+                    PagoImplement.executeNew(request, response);
                     break;                
                 case "Editar":
-                    UsuarioImplement.executeEdit(request, response);
+                    PagoImplement.executeEdit(request, response);
                     break;
                 case "Guardar":
-                    UsuarioImplement.executeSave(request, response);
+                    PagoImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
-                    UsuarioImplement.executeDelete(request, response);
-                    break;
-                default:
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        }
-        if (menu != null && menu.equals("Deuda")) {
-            switch (accion) {
-                case "Listar":
-                   UsuarioImplement.executeListar(request, response);
-                   break;
-                case "Nuevo":                    
-                    UsuarioImplement.executeNew(request, response);
-                    break;                
-                case "Editar":
-                    UsuarioImplement.executeEdit(request, response);
-                    break;
-                case "Guardar":
-                    UsuarioImplement.executeSave(request, response);
-                    break;
-                case "Eliminar":
-                    UsuarioImplement.executeDelete(request, response);
+                    PagoImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);

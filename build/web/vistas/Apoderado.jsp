@@ -31,13 +31,12 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="Controlador?menu=Usuario&accion=Listar">Registro de Usuarios</a>
-                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
-                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Registro de Pagos</a>
-                                <a class="dropdown-item" href="Controlador?menu=Deuda&accion=Listar">Registro de Deudas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Historial de Pagos </a>
+                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -95,48 +94,47 @@
                 <table id="myTable" class="table table-hover table-responsive">
                     <thead>
                         <tr class="text-center">
-                            <th>ID</th>
-                            <th>T.DOC.</th>
-                            <th>NRO.DOC</th>
+                            <th>ID</th>                            
+                            <th>DOCUMENTO</th>
                             <th>NOMBRES</th>
                             <th>APELLIDOS</th>
                             <th>TELEFONO</th>
                             <th>CORREO</th>
+                            <th>PARENTESCO</th>
                             <th>USUARIOS</th>
                             <th>ACCION</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="us" items="${Apoderados}">
-                            <tr>
+                            <tr class="text-center">
                                 <td class="text-center">${us.idApo}</td>
-                                <td class="text-center">${us.tipodoc.tipo}</td>
+                                <!--<td class="text-center">${us.tipodoc.tipo}</td>-->
                                 <td class="text-center">${us.nrodoc}</td>
                                 <td>${us.nombres}</td>
                                 <td>${us.apellidos}</td>
                                 <td>${us.telefono}</td>
                                 <td>${us.correo}</td>
+                                <td>${us.parentesco.parentesco}</td>
                                 <td>
                                     <table border="1">                                        
                                         <tbody>
                                             <c:forEach var="h" items="${us.usuarios}">
-                                                <tr>
+                                                <tr style="font-size: 10px">
                                                     <td>${h.id}</td>
-                                                    <td>${h.nombres}</td>
-                                                    <td>${h.apellidos}</td>
+                                                    <td>${h.nombres} ${h.apellidos}</td>
                                                 </tr>
                                             </c:forEach>                                            
                                         </tbody>
                                     </table>
-
                                 </td>
-                                <td class="text-center">                                  
+                                <td class="text-center d-flex">                                  
                                     <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idApo}, 'Apoderado', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
-                                    <!--<form class="ml-1" action="Controlador?menu=Apoderado" method="POST">
+                                    <form class="ml-1" action="Controlador?menu=Apoderado" method="POST">
                                         <input type="hidden" name="txtIdApo" value="${us.idApo}">
                                         <input type="hidden" name="txtIdPer" value="${us.id}">
-                                        <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
-                                    </form>-->                                 
+                                        <button class="btn btn-primary btn-sm" type="submit" name="accion" value="Listar"><i class="fas fa-eye"></i></button>
+                                    </form>                                
                                 </td>
                             </tr>
                         </c:forEach>                        

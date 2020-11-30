@@ -1,19 +1,12 @@
 package com.app.controlador;
 
-import com.app.dao.DaoApoderado;
-import com.app.dao.DaoParentesco;
 import com.app.dao.DaoPersonal;
 import com.app.dao.DaoTipoDoc;
-import com.app.dao.DaoUsuario;
-import com.app.dto.Apoderado;
 import com.app.dto.Area;
 import com.app.dao.DaoArea;
-import com.app.dto.Parentesco;
 import com.app.dto.Personal;
 import com.app.dto.TipoDoc;
-import com.app.dto.Usuario;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

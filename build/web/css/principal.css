@@ -1,11 +1,5 @@
-img{
-    transition:transform 1s;
-}
-img:hover{
-    transform : scale(1.2);    
-}
-img{
-    opacity: 4.9;   
+body{
+    background-color: #CFECEC;
 }
 .mt{
     margin-top: 20px;
@@ -20,3 +14,4 @@ img{
 .bold{
     font-weight: bold;
 }
+

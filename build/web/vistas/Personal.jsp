@@ -30,13 +30,12 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="Controlador?menu=Usuario&accion=Listar">Registro de Usuarios</a>
-                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
-                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Registro de Pagos</a>
-                                <a class="dropdown-item" href="Controlador?menu=Deuda&accion=Listar">Registro de Deudas</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Pago&accion=Listar">Historial de Pagos </a>
+                                <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

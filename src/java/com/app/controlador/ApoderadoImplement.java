@@ -2,12 +2,10 @@ package com.app.controlador;
 
 import com.app.dao.DaoApoderado;
 import com.app.dao.DaoParentesco;
-import com.app.dao.DaoRol;
 import com.app.dao.DaoTipoDoc;
 import com.app.dao.DaoUsuario;
 import com.app.dto.Apoderado;
 import com.app.dto.Parentesco;
-import com.app.dto.Rol;
 import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
 import java.io.IOException;
