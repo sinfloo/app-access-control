@@ -91,7 +91,7 @@
             </div>
             <div class="form-group">
                 <div class="card" style="padding:20px">
-                    <table id="myTable" class="table table-responsive" style="width: 100%">
+                    <table id="myTable" class="table table-responsive-lg table-hover" >
                         <thead>
                             <tr class="text-center">
                                 <th>ID</th>
@@ -121,114 +121,126 @@
                         </tbody>
                     </table>
                     <hr>
-                    <div class="text-center">
-                        <button class="btn btn-warning bold" data-toggle="modal" data-target="#myModal"><i class="far fa-credit-card"></i> Registrar Deuda</button>
-                        <button class="btn btn-success bold" data-toggle="modal" data-target="#myModal2"><i class="fab fa-amazon-pay"></i> Registrar Pago</button>
-                        <label class="bold">Total Deuda:</label>
-                        <input type="text" class="btn btn-outline-danger" readonly="" value="S/.${total}" style="text-align: center;font-weight: bold;font-size: 18px;">                    
-                    </div>                                 
-                </div>
-            </div>
-        </div>
-        <!--REGISTRO DE DEUDAS-->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form action="Controlador?menu=Pago" method="POST">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="padding-left: 30px;padding-right: 30px">
-                            <div class="form-group">
-                                <label for="tipooperacion">Tipo Operacion</label>
-                                <input type="text" value="DEUDA" name="txtTipo" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="tipooperacion" class="bold">Usuario</label>
-                                <input type="hidden"  name="txtIdUser" value="${User.idUser}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <input type="text" value="${User.nombres} ${User.apellidos}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="numero">Número de Ticket</label>
-                                <input type="text" maxlength="10" class="form-control form-control-sm"  name="txtNumero" placeholder="T000000001">
-                            </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control form-control-sm"  name="txtDescripcion" requerid="">
-                            </div>
-                            <div class="form-group">
-                                <label for="importe">Importe</label>
-                                <input type="text" class="form-control form-control-sm" name="txtImporte" requerid="" placeholder="S/. 200.00">
-                            </div>
-                        </div>
-                        <div class="modal-footer" style="padding-left: 30px;padding-right: 30px">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="accion" value="Guardar" class="btn btn-primary">GUARDAR CAMBIOS</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!--REGISTRO DE PAGOS-->
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form action="Controlador?menu=Pago" method="POST">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="padding-left: 30px;padding-right: 30px">
-                            <div class="form-group">
-                                <label for="tipooperacion">Tipo Operacion</label>
-                                <input type="text" value="PAGO" name="txtTipo" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="tipooperacion" class="bold">Usuario</label>
-                                <input type="hidden"  name="txtIdUser" value="${User.idUser}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <input type="text" value="${User.nombres} ${User.apellidos}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
-                                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                            </div>
-                            <div class="form-group">
-                                <label for="numero">Número de Ticket</label>
-                                <input type="text" maxlength="10" class="form-control form-control-sm"  name="txtNumero" placeholder="T000000001">
-                            </div>
-                            <div class="form-group">
-                                <label for="descripcion">Descripción</label>
-                                <input type="text" class="form-control form-control-sm"  name="txtDescripcion" requerid="">
-                            </div>
-                            <div class="form-group">
-                                <label for="importe">Importe</label>
-                                <input type="text" class="form-control form-control-sm" name="txtImporte" requerid="" placeholder="S/. 200.00">
-                            </div>
-                        </div>
-                        <div class="modal-footer" style="padding-left: 30px;padding-right: 30px">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="accion" value="Guardar" class="btn btn-primary">GUARDAR CAMBIOS</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
-        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="js/funciones.js" type="text/javascript"></script>
-        <script>
+                    <nav class="navbar-expand-lg">
+                        <div class="navbar-collapse" id="navbarTogglerDemo03">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-        </script>
-        <script>
-            $(document).ready(function () {
-                $('#myTables').DataTable();
-            });
-        </script>
-    </body>
+                            </ul>
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <button class="btn btn-warning bold ml-2" data-toggle="modal" data-target="#myModal"><i class="far fa-credit-card"></i> Registrar Deuda</button>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success bold ml-2" data-toggle="modal" data-target="#myModal2"><i class="fab fa-amazon-pay"></i> Registrar Pagos</button>
+                                </div>
+                                <label class="bold ml-2">Total de Deuda:</label>
+                                <input type="text" class="btn btn-outline-danger ml-2" readonly="" value="S/.${total}" style="text-align: center;font-weight: bold">                    
+                            </form>
+                        </div>
+                    </nav>
+                </div>                                 
+            </div>
+        </div>
+    </div>
+    <!--REGISTRO DE DEUDAS-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="Controlador?menu=Pago" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-left: 30px;padding-right: 30px">
+                        <div class="form-group">
+                            <label for="tipooperacion">Tipo Operacion</label>
+                            <input type="text" value="DEUDA" name="txtTipo" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="tipooperacion" class="bold">Usuario</label>
+                            <input type="hidden"  name="txtIdUser" value="${User.idUser}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <input type="text" value="${User.nombres} ${User.apellidos}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número de Ticket</label>
+                            <input type="text" maxlength="10" class="form-control form-control-sm"  name="txtNumero" placeholder="T000000001">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" class="form-control form-control-sm"  name="txtDescripcion" requerid="">
+                        </div>
+                        <div class="form-group">
+                            <label for="importe">Importe</label>
+                            <input type="text" class="form-control form-control-sm" name="txtImporte" requerid="" placeholder="S/. 200.00">
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="padding-left: 30px;padding-right: 30px">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="accion" value="Guardar" class="btn btn-primary">GUARDAR CAMBIOS</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--REGISTRO DE PAGOS-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="Controlador?menu=Pago" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-left: 30px;padding-right: 30px">
+                        <div class="form-group">
+                            <label for="tipooperacion">Tipo Operacion</label>
+                            <input type="text" value="PAGO" name="txtTipo" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="tipooperacion" class="bold">Usuario</label>
+                            <input type="hidden"  name="txtIdUser" value="${User.idUser}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <input type="text" value="${User.nombres} ${User.apellidos}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número de Ticket</label>
+                            <input type="text" maxlength="10" class="form-control form-control-sm"  name="txtNumero" placeholder="T000000001">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" class="form-control form-control-sm"  name="txtDescripcion" requerid="">
+                        </div>
+                        <div class="form-group">
+                            <label for="importe">Importe</label>
+                            <input type="text" class="form-control form-control-sm" name="txtImporte" requerid="" placeholder="S/. 200.00">
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="padding-left: 30px;padding-right: 30px">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="accion" value="Guardar" class="btn btn-primary">GUARDAR CAMBIOS</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="js/funciones.js" type="text/javascript"></script>
+    <script>
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#myTables').DataTable();
+        });
+    </script>
+</body>
 </html>
