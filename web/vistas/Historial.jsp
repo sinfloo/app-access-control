@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
         <link href="css/principal.css" rel="stylesheet" type="text/css"/>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"/>
         <title>Principal</title>
     </head>
     <body>
@@ -33,20 +34,9 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Reportes
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Reporte de Concepto</a>
-                                <a class="dropdown-item" href="#">Reporte de Pago</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Reporte de Deuda</a>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Nuevo">Registro de Matricula</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -54,10 +44,10 @@
                                 Configuración
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Configuración de Roles</a>
+                                <a class="dropdown-item" href="#">Configuración de Perfiles</a>
                                 <a class="dropdown-item" href="#">Configuracion de Accesos</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item" href="Ayuda.jsp">Ayuda</a>
                             </div>
                         </li>
                     </ul>
@@ -126,7 +116,7 @@
                             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                             </ul>
-                            <form class="form-inline">
+                            <div class="form-inline">
                                 <div class="form-group">
                                     <button class="btn btn-warning bold ml-2" data-toggle="modal" data-target="#myModal"><i class="far fa-credit-card"></i> Registrar Deuda</button>
                                 </div>
@@ -135,7 +125,7 @@
                                 </div>
                                 <label class="bold ml-2">Total de Deuda:</label>
                                 <input type="text" class="btn btn-outline-danger ml-2" readonly="" value="S/.${total}" style="text-align: center;font-weight: bold">                    
-                            </form>
+                            </div>
                         </div>
                     </nav>
                 </div>                                 
@@ -232,15 +222,16 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
-    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
     <script src="js/funciones.js" type="text/javascript"></script>
-    <script>
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#myTables').DataTable();
-        });
-    </script>
+    <script src="js/datatable.js" type="text/javascript"></script>
+</script>
 </body>
 </html>

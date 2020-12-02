@@ -24,24 +24,27 @@ public class DaoUsuario implements IMantenimiento {
                 + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN tipodoc t"
                 + " ON u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and t.IDTIPODOC=p.IDTIPODOC"
                 + " WHERE u.USUARIO='" + u.getUsuario() + "' AND u.PASSWORD='" + u.getPassword() + "'";
+
         Connection con = Conexion.getConnection();
-        try (PreparedStatement ps = con.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                u.setIdUser(rs.getInt(1));
-                u.setUsuario(rs.getString(2));
-                u.setNombres(rs.getString(3));
-                u.setApellidos(rs.getString(4));
-                u.setNrodoc(rs.getString(5));
-                u.setTelefono(rs.getString(6));
-                u.setCorreo(rs.getString(7));
-                u.setRol(new Rol(rs.getInt(8), rs.getString(9)));
+        if (con != null) {
+            try (PreparedStatement ps = con.prepareStatement(sql);
+                    ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    u.setIdUser(rs.getInt(1));
+                    u.setUsuario(rs.getString(2));
+                    u.setNombres(rs.getString(3));
+                    u.setApellidos(rs.getString(4));
+                    u.setNrodoc(rs.getString(5));
+                    u.setTelefono(rs.getString(6));
+                    u.setCorreo(rs.getString(7));
+                    u.setRol(new Rol(rs.getInt(8), rs.getString(9)));
+                }
+                rs.close();
+            } catch (SQLException e) {
+                LOGGER.log(Level.INFO, e.getMessage(), e);
+            } finally {
+                Conexion.close(con);
             }
-            rs.close();
-        } catch (SQLException e) {
-            LOGGER.log(Level.INFO, e.getMessage(), e);
-        } finally {
-            Conexion.close(con);
         }
         return u;
     }
@@ -238,5 +241,38 @@ public class DaoUsuario implements IMantenimiento {
             Conexion.close(con);
         }
         return isRegistered;
+    }
+
+    //Other methods 
+    public Usuario getUsuario(String documento) {
+        Usuario u = new Usuario();
+        Connection con = Conexion.getConnection();
+        try {
+            String sql = "SELECT p.IDPERSONA,p.IDTIPODOC,p.NRODOC,p.NOMBRES,p.APELLIDOS,"
+                    + " p.TELEFONO,p.CORREO,u.IDUSUARIO,u.USUARIO,u.PASSWORD,u.ESTADO,u.IDROL"
+                    + " FROM USUARIO u INNER JOIN persona p"
+                    + " where u.IDPERSONA=p.IDPERSONA AND p.NRODOC=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, documento);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                u.setId(rs.getInt("p.IDPERSONA"));
+                u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"), null));
+                u.setNrodoc(rs.getString("p.NRODOC"));
+                u.setNombres(rs.getString("p.NOMBRES"));
+                u.setApellidos(rs.getString("p.APELLIDOS"));
+                u.setTelefono(rs.getString("p.TELEFONO"));
+                u.setCorreo(rs.getString("p.CORREO"));
+                u.setIdUser(rs.getInt("u.IDUSUARIO"));
+                u.setUsuario(rs.getString("u.USUARIO"));
+                u.setPassword(rs.getString("u.PASSWORD"));
+                u.setRol(new Rol(rs.getInt("u.IDROL"), null));
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.getMessage(), e);
+        } finally {
+            LOGGER.log(Level.INFO, "Mensaje!");
+        }
+        return u;
     }
 }

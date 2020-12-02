@@ -16,6 +16,9 @@ public class Historial {
         this.totaldeuda = totaldeuda;
         this.usuario = usuario;
     }
+    public Historial(double totaldeuda) {
+        this.totaldeuda = totaldeuda;
+    }
 
     public int getId() {
         return id;

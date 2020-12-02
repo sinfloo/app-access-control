@@ -34,9 +34,9 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Controlador?menu=Apoderado&accion=Listar">Registro de Apoderados</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Nuevo">Registro de Matricula</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

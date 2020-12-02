@@ -5,6 +5,8 @@ import com.app.dao.DaoUsuario;
 import com.app.dto.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +15,19 @@ import javax.servlet.http.HttpSession;
 
 public class ControladorLogin extends HttpServlet {
 
+    private static final Logger LOGGER = Logger.getLogger(ControladorLogin.class.getName());
     private String accion;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         accion = request.getParameter("accion");
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         switch (accion) {
             case "Login":
                 Usuario u = new Usuario();
                 u.setUsuario(request.getParameter("Usuario"));
                 u.setPassword(request.getParameter("Password"));
+
                 u = new DaoUsuario().validateUser(u);
                 if (u != null && u.getNombres() != null && !"".equals(u.getApellidos())) {
                     session.setAttribute("Usuario", u);

@@ -23,7 +23,6 @@ public class Conexion {
                 LOGGER.log(Level.INFO, "Database connection is successfull!!");
             }
         } catch (ClassNotFoundException | SQLException e) {
-            close(con);
             LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }

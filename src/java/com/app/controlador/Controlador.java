@@ -1,6 +1,5 @@
 package com.app.controlador;
 
-import com.app.dto.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -64,19 +63,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Matricula")) {
             switch (accion) {
                 case "Listar":
-                   UsuarioImplement.executeListar(request, response);
+                   MatriculaImplement.executeListar(request, response);
                    break;
                 case "Nuevo":                    
-                    UsuarioImplement.executeNew(request, response);
+                    MatriculaImplement.executeNew(request, response);
                     break;                
-                case "Editar":
-                    UsuarioImplement.executeEdit(request, response);
+                case "IniciarMatricula":
+                    MatriculaImplement.executeStartMatricula(request, response);
                     break;
                 case "Guardar":
-                    UsuarioImplement.executeSave(request, response);
+                    MatriculaImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
-                    UsuarioImplement.executeDelete(request, response);
+                    MatriculaImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -18,6 +18,21 @@ public class Fecha {
         fecha = sdf.format(calendar.getTime());
         return fecha;
     }
+    public static String Hora() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        fecha = sdf.format(calendar.getTime());
+        return fecha;
+    }
+    public static String Año() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        fecha = sdf.format(calendar.getTime());
+        return fecha;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(Año());
+    }
+    
    
 
 }
