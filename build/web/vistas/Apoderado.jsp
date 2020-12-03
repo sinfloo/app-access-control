@@ -41,24 +41,13 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Reportes
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Reporte de Concepto</a>
-                                <a class="dropdown-item" href="#">Reporte de Pago</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Reporte de Deuda</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Configuración
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Configuración de Roles</a>
-                                <a class="dropdown-item" href="#">Configuracion de Accesos</a>
+                                <!--<a class="dropdown-item" href="#">Configuración de Perfiles</a>
+                                <a class="dropdown-item" href="#">Configuracion de Accesos</a>-->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Ayuda</a>
+                                <a class="dropdown-item" href="Ayuda.jsp">Ayuda</a>
                             </div>
                         </li>
                     </ul>
@@ -73,8 +62,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><img src="img/user.png" height="50" width="50"></a>
-                                <a class="dropdown-item" href="#">Usuario</a>
-                                <a class="dropdown-item" href="#">usuario@gmail.com</a>
+                                <a class="dropdown-item" href="#">${Usuario.usuario}</a>
+                                <a class="dropdown-item" href="#">${Usuario.correo}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="ControladorLogin?accion=Salir">Salir</a>
                             </div>

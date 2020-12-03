@@ -44,8 +44,8 @@
                                 Configuración
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Configuración de Perfiles</a>
-                                <a class="dropdown-item" href="#">Configuracion de Accesos</a>
+                                <!--<a class="dropdown-item" href="#">Configuración de Perfiles</a>
+                                <a class="dropdown-item" href="#">Configuracion de Accesos</a>-->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Ayuda.jsp">Ayuda</a>
                             </div>
@@ -62,8 +62,8 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><img src="img/user.png" height="50" width="50"></a>
-                                <a class="dropdown-item" href="#">Usuario</a>
-                                <a class="dropdown-item" href="#">usuario@gmail.com</a>
+                                <a class="dropdown-item" href="#">${Usuario.usuario}</a>
+                                <a class="dropdown-item" href="#">${Usuario.correo}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="ControladorLogin?accion=Salir">Salir</a>
                             </div>

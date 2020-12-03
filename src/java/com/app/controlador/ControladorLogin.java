@@ -42,7 +42,7 @@ public class ControladorLogin extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             default:
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("Home.jsp").forward(request, response);
         }
     }
 
