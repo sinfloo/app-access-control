@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2020 a las 04:34:30
+-- Tiempo de generación: 03-12-2020 a las 02:33:03
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -35,14 +35,6 @@ CREATE TABLE `apoderado` (
   `IDUSUARIO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `apoderado`
---
-
-INSERT INTO `apoderado` (`IDAPODERADO`, `IDPARENTESCO`, `IDPERSONA`, `IDUSUARIO`) VALUES
-(1, 1, 34573, 47),
-(6, 1, 34578, 48);
-
 -- --------------------------------------------------------
 
 --
@@ -67,29 +59,53 @@ INSERT INTO `area` (`IDAREA`, `DESCRIPCION`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `grado`
+--
+
+CREATE TABLE `grado` (
+  `IDGRADO` int(11) NOT NULL,
+  `DESCRIPCION` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`IDGRADO`, `DESCRIPCION`) VALUES
+(1, 'PRIMERO'),
+(2, 'SEGUNDO'),
+(3, 'TERCERO'),
+(4, 'CUARTO');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `historial`
 --
 
 CREATE TABLE `historial` (
   `IDHISTORIAL` int(11) NOT NULL,
   `TIPO` int(1) NOT NULL,
-  `NROTICKET` varchar(11) NOT NULL,
+  `NROTICKET` varchar(14) NOT NULL,
   `FECHA` date NOT NULL,
   `DESCRIPCION` varchar(50) NOT NULL,
   `IMPORTE` decimal(8,2) NOT NULL,
   `IDUSUARIO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `historial`
+-- Estructura de tabla para la tabla `matricula`
 --
 
-INSERT INTO `historial` (`IDHISTORIAL`, `TIPO`, `NROTICKET`, `FECHA`, `DESCRIPCION`, `IMPORTE`, `IDUSUARIO`) VALUES
-(13, 1, '1000000234', '2020-11-29', 'Universidad Peruana Union', '600.00', 48),
-(15, 1, '100000011', '2020-11-29', 'Pension mes de Enero', '600.00', 48),
-(19, 2, 'P000000001', '2020-11-29', 'Pago pension mes de enero 600', '600.00', 48),
-(20, 1, 'D000000001', '2020-11-29', 'Deuda PensiÃ³n Mes de Julio', '500.00', 47),
-(24, 2, 'P000000004', '2020-11-29', 'Pension mes de Agosto', '200.00', 47);
+CREATE TABLE `matricula` (
+  `IDMATRICULA` int(11) NOT NULL,
+  `YEAR` varchar(4) NOT NULL,
+  `IDHISTORIAL` int(11) NOT NULL,
+  `IDUSUARIO` int(11) NOT NULL,
+  `IDGRADO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,12 +147,7 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`IDPERSONA`, `IDTIPODOC`, `NRODOC`, `NOMBRES`, `APELLIDOS`, `TELEFONO`, `CORREO`) VALUES
-(1, 1, '12345672', 'Joel Hernandez', 'Perez', '988251450', 'joelpc@admin.edu.pe'),
-(2, 1, '20000001', 'Carlos ', 'Aliaga Fuentes', '100000001', 'carlos@gmail.com'),
-(34571, 1, '12345678', 'Maria Eva', 'Vargas', '34523456', 'maria@gmail.com'),
-(34572, 2, '46289694', 'Camilo', 'Guerra Torres', '09999999', 'camilo@gmail.com'),
-(34573, 1, '10000001', 'Pedro Soto', 'Ugarte Torres', '789635112', 'pedro@gmail.com'),
-(34578, 1, '46282220', 'Joel', 'Perez', '988251459', 'joelpc@upeu.edu.pe');
+(1, 1, '12345672', 'ADMINISTRADOR', 'ADMIN', '988251450', 'admin@admin.edu.pe');
 
 -- --------------------------------------------------------
 
@@ -149,13 +160,6 @@ CREATE TABLE `personal` (
   `IDAREA` int(11) NOT NULL,
   `IDPERSONA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `personal`
---
-
-INSERT INTO `personal` (`IDPERSONAL`, `IDAREA`, `IDPERSONA`) VALUES
-(1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -215,9 +219,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`IDUSUARIO`, `USUARIO`, `PASSWORD`, `ESTADO`, `IDPERSONA`, `IDROL`) VALUES
-(1, 'admin', 'admin', 1, 1, 1),
-(47, 'maria', 'maria2020', 1, 34571, 2),
-(48, 'camilo', 'camilo2020', 1, 34572, 2);
+(1, 'admin', 'admin', 1, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -239,12 +241,27 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`IDAREA`);
 
 --
+-- Indices de la tabla `grado`
+--
+ALTER TABLE `grado`
+  ADD PRIMARY KEY (`IDGRADO`);
+
+--
 -- Indices de la tabla `historial`
 --
 ALTER TABLE `historial`
   ADD PRIMARY KEY (`IDHISTORIAL`),
   ADD UNIQUE KEY `NROTICKET` (`NROTICKET`),
   ADD KEY `HISTOR - USER` (`IDUSUARIO`);
+
+--
+-- Indices de la tabla `matricula`
+--
+ALTER TABLE `matricula`
+  ADD PRIMARY KEY (`IDMATRICULA`),
+  ADD KEY `MATR - USER` (`IDUSUARIO`),
+  ADD KEY `MATR - HISTORIAL` (`IDHISTORIAL`),
+  ADD KEY `matricula-grado` (`IDGRADO`);
 
 --
 -- Indices de la tabla `parentesco`
@@ -304,10 +321,22 @@ ALTER TABLE `area`
   MODIFY `IDAREA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `grado`
+--
+ALTER TABLE `grado`
+  MODIFY `IDGRADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `IDHISTORIAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `IDHISTORIAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `matricula`
+--
+ALTER TABLE `matricula`
+  MODIFY `IDMATRICULA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `parentesco`
@@ -319,7 +348,7 @@ ALTER TABLE `parentesco`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDPERSONA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34582;
+  MODIFY `IDPERSONA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34583;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -343,7 +372,7 @@ ALTER TABLE `tipodoc`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IDUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `IDUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Restricciones para tablas volcadas
@@ -362,6 +391,14 @@ ALTER TABLE `apoderado`
 --
 ALTER TABLE `historial`
   ADD CONSTRAINT `HISTOR - USER` FOREIGN KEY (`IDUSUARIO`) REFERENCES `usuario` (`IDUSUARIO`);
+
+--
+-- Filtros para la tabla `matricula`
+--
+ALTER TABLE `matricula`
+  ADD CONSTRAINT `MATR - HISTORIAL` FOREIGN KEY (`IDHISTORIAL`) REFERENCES `historial` (`IDHISTORIAL`),
+  ADD CONSTRAINT `MATR - USER` FOREIGN KEY (`IDUSUARIO`) REFERENCES `usuario` (`IDUSUARIO`),
+  ADD CONSTRAINT `matricula-grado` FOREIGN KEY (`IDGRADO`) REFERENCES `grado` (`IDGRADO`);
 
 --
 -- Filtros para la tabla `persona`
