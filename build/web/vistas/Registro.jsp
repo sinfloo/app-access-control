@@ -34,7 +34,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="Controlador?menu=Personal&accion=Listar">Registro de Personal</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Nuevo">Registro de Matricula</a>
+                                <a class="dropdown-item" href="Controlador?menu=Matricula&accion=Listar">Registro de Matricula</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -80,7 +80,6 @@
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TIPO DOC.</label>
                                 <div class="col-sm-9">
                                     <select class="form-control form-control-sm" name="txtTipo">
-                                        <option value="0">SELECCIONAR</option>
                                         <c:forEach var="t" items="${TiposDoc}">  
                                             <c:if test="${User.tipodoc.id==t.id}">
                                                 <option selected="" value="${t.id}">${t.tipo}</option>
@@ -95,25 +94,25 @@
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">NRO DOC.</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="${User.nrodoc}" name="txtNroDoc" maxlength="8" class="form-control form-control-sm">
+                                    <input type="text" required="" value="${User.nrodoc}" name="txtNroDoc" maxlength="8" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">NOMBRES</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="${User.nombres}" name="txtNombres" class="form-control form-control-sm">
+                                    <input type="text" required="" value="${User.nombres}" name="txtNombres" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">APELLIDOS</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="${User.apellidos}" name="txtApellidos" class="form-control form-control-sm">
+                                    <input type="text" required="" value="${User.apellidos}" name="txtApellidos" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">TELFONO</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="${User.telefono}" name="txtTelefono" class="form-control form-control-sm">
+                                    <input type="text" required="" value="${User.telefono}" name="txtTelefono" class="form-control form-control-sm">
                                 </div>
                             </div>
                             <div class="form-group row">
