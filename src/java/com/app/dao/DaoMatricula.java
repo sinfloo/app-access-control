@@ -91,6 +91,12 @@ public class DaoMatricula implements IMantenimiento {
             ps.setInt(3, us.getUsuario().getIdUser());
             ps.setInt(4, us.getGrado().getId());
             r=ps.executeUpdate();
+            
+            sql = "UPDATE USUARIO set IDGRADO=? WHERE IDUSUARIO=?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, us.getGrado().getId());
+            ps.setInt(2, us.getUsuario().getIdUser());            
+            r=ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.getMessage(), e);

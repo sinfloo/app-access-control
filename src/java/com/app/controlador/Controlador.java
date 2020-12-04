@@ -39,6 +39,27 @@ public class Controlador extends HttpServlet {
                     request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }
+        if (menu != null && menu.equals("Configuracion")) {
+            switch (accion) {
+                case "Listar":
+                   UsuarioImplement.executeListar2(request, response);
+                   break;
+                case "Nuevo":                    
+                    UsuarioImplement.executeNew2(request, response);
+                    break;                
+                case "Editar":
+                    UsuarioImplement.executeEdit2(request, response);
+                    break;
+                case "Guardar":
+                    UsuarioImplement.executeSave2(request, response);
+                    break;
+                case "Eliminar":
+                    UsuarioImplement.executeDelete(request, response);
+                    break;
+                default:
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }
         if (menu != null && menu.equals("Apoderado")) {
             switch (accion) {
                 case "Listar":

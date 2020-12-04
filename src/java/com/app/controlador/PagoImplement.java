@@ -35,6 +35,7 @@ public class PagoImplement {
                     total = total - h.getOperacion().getImporte();
                 }
             }
+            //request.setAttribute("nroticket", Fecha.Hora());
             request.setAttribute("User", new DaoUsuario().getFindId(iduser));
             request.setAttribute("total", total);
             request.getRequestDispatcher("vistas/Historial.jsp").forward(request, response);

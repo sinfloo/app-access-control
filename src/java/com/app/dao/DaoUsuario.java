@@ -56,9 +56,10 @@ public class DaoUsuario implements IMantenimiento {
         Connection con = Conexion.getConnection();
         try {
             String sql = "SELECT u.IDUSUARIO,U.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
-                    + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION,p.IDPERSONA,p.IDTIPODOC,t.TIPO"
-                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN TIPODOC t"
-                    + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDTIPODOC=t.IDTIPODOC ORDER BY u.IDUSUARIO";
+                    + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION,p.IDPERSONA,p.IDTIPODOC,t.TIPO,g.DESCRIPCION"
+                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN TIPODOC t INNER JOIN grado g"
+                    + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDTIPODOC=t.IDTIPODOC"
+                    + " AND u.IDGRADO=g.IDGRADO ORDER BY u.IDUSUARIO";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -70,10 +71,49 @@ public class DaoUsuario implements IMantenimiento {
                 u.setNrodoc(rs.getString("p.NRODOC"));
                 u.setTelefono(rs.getString("p.TELEFONO"));
                 u.setCorreo(rs.getString("p.CORREO"));
+                u.setGrado(!"SELECCIONAR".equals(rs.getString("g.DESCRIPCION"))?rs.getString("g.DESCRIPCION"):"POR DEFINIR");
                 u.setRol(new Rol(rs.getInt("r.IDROL"), rs.getString("r.DESCRIPCION")));
                 u.setId(rs.getInt("p.IDPERSONA"));
                 u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"), rs.getString("t.TIPO")));
-                listUsers.add(u);
+                if (u.getUsuario() == null) {
+                    listUsers.add(u);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.INFO, e.getMessage(), e);
+        } finally {
+            Conexion.close(con);
+        }
+        return listUsers;
+    }
+    public List<?> getAll2() {
+        List<Usuario> listUsers = new ArrayList<>();
+        Connection con = Conexion.getConnection();
+        try {
+            String sql = "SELECT u.IDUSUARIO,U.USUARIO,u.PASSWORD,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
+                    + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION,p.IDPERSONA,p.IDTIPODOC,t.TIPO,g.DESCRIPCION"
+                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN TIPODOC t INNER JOIN grado g"
+                    + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDTIPODOC=t.IDTIPODOC"
+                    + " AND u.IDGRADO=g.IDGRADO ORDER BY u.IDUSUARIO";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuario u = new Usuario();
+                u.setIdUser(rs.getInt("u.IDUSUARIO"));
+                u.setUsuario(rs.getString("U.USUARIO"));
+                u.setPassword(rs.getString("u.PASSWORD"));
+                u.setNombres(rs.getString("p.NOMBRES"));
+                u.setApellidos(rs.getString("p.APELLIDOS"));
+                u.setNrodoc(rs.getString("p.NRODOC"));
+                u.setTelefono(rs.getString("p.TELEFONO"));
+                u.setCorreo(rs.getString("p.CORREO"));
+                u.setGrado(!"SELECCIONAR".equals(rs.getString("g.DESCRIPCION"))?rs.getString("g.DESCRIPCION"):"POR DEFINIR");
+                u.setRol(new Rol(rs.getInt("r.IDROL"), rs.getString("r.DESCRIPCION")));
+                u.setId(rs.getInt("p.IDPERSONA"));
+                u.setTipodoc(new TipoDoc(rs.getInt("p.IDTIPODOC"), rs.getString("t.TIPO")));
+                if (u.getUsuario() != null) {
+                    listUsers.add(u);
+                }
             }
         } catch (SQLException e) {
             LOGGER.log(Level.INFO, e.getMessage(), e);
@@ -141,13 +181,14 @@ public class DaoUsuario implements IMantenimiento {
                     rs.next();
                     idPersona = rs.getInt("IDPERSONA");
                 }
-                sql = "INSERT INTO usuario (USUARIO, PASSWORD, ESTADO, IDPERSONA, IDROL) VALUES(?,?,?,?,?)";
+                sql = "INSERT INTO usuario (USUARIO, PASSWORD, ESTADO, IDPERSONA, IDROL,IDGRADO) VALUES(?,?,?,?,?,?)";
                 ps = con.prepareStatement(sql);
                 ps.setString(1, us.getUsuario());
                 ps.setString(2, us.getPassword());
                 ps.setInt(3, 1);
                 ps.setInt(4, idPersona);
                 ps.setInt(5, us.getRol().getId());
+                ps.setInt(6, 10);
                 r = ps.executeUpdate();
                 ps.close();
             } catch (SQLException e) {

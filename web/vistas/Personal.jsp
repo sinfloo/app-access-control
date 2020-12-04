@@ -7,9 +7,11 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
-        <link href="css/principal.css" rel="stylesheet" type="text/css"/>
+        <link href="css/principal.css" rel="stylesheet" type="text/css"/> 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <title>Principal</title>
     </head>
     <body>
@@ -71,59 +73,70 @@
                 </div>
             </nav>
         </div>
-        <div class="container">
-            <div class="form-group d-flex">
-                <form action="Controlador?menu=Personal" method="POST">
-                    <button class="btn btn-primary" type="submit" name="accion" value="Nuevo"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
-                </form> 
-                 <h4 class="ml-2 mt-1">Lista de Personal</h4>
-            </div>
-            <div class="form-group">
-                <table id="myTable" class="table table-hover">
-                    <thead>
-                        <tr class="text-center">
-                            <th>ID</th>
-                            <th>T.DOC.</th>
-                            <th>NRO.DOC</th>
-                            <th>NOMBRES</th>
-                            <th>APELLIDOS</th>
-                            <th>TELEFONO</th>
-                            <th>CORREO</th>
-                            <th>AREA</th>
-                            <th>ACCION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="per" items="${Personales}">
-                            <tr>
-                                <td class="text-center">${per.idp}</td>
-                                <td class="text-center">${per.tipodoc.tipo}</td>
-                                <td class="text-center">${per.nrodoc}</td>
-                                <td>${per.nombres}</td>
-                                <td>${per.apellidos}</td>
-                                <td>${per.telefono}</td>
-                                <td>${per.correo}</td>
-                                <td>${per.area.descripcion}</td>
-                                <td class="text-center">                                  
-                                    <button class="btn btn-danger btn-sm" onclick="eliminar(${per.idp}, 'Personal', 'Listar',${per.id})"><i class="fas fa-trash-alt"></i></button>
-                                </td>
+        <main>
+            <ul class="menu-social">
+                <li><a href="http://www.youtube.com/"target="_blank"><img class="img" src="img/youtube.png" alt="">Youtube</a></li>
+                <li><a href="http://www.facebook.com"target="_blank"><img class="img" src="img/facebook.png" alt="">Facebook</a></li>
+                <li><a href="https://google.com/"target="_blank"><img class="img" src="img/google.png" alt="">Google</a></li>
+                <li><a href="https://twitter.com/"target="_blank"><img class="img" src="img/twitter.png" alt="">Twitter</a></li>
+            </ul> 
+            <div class="container">
+                <div class="form-group d-flex">
+                    <form action="Controlador?menu=Personal" method="POST">
+                        <button class="btn btn-primary" type="submit" name="accion" value="Nuevo"><i class="fas fa-user-plus"></i> Nuevo Registro</button>
+                    </form> 
+                    <h4 class="ml-2 mt-1">Lista de Personal</h4>
+                </div>
+                <div class="form-group">
+                    <table id="myTable" class="table table-hover">
+                        <thead>
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>T.DOC.</th>
+                                <th>NRO.DOC</th>
+                                <th>NOMBRES</th>
+                                <th>APELLIDOS</th>
+                                <th>TELEFONO</th>
+                                <th>CORREO</th>
+                                <th>AREA</th>
+                                <th>ACCION</th>
                             </tr>
-                        </c:forEach>                        
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="per" items="${Personales}">
+                                <tr>
+                                    <td class="text-center">${per.idp}</td>
+                                    <td class="text-center">${per.tipodoc.tipo}</td>
+                                    <td class="text-center">${per.nrodoc}</td>
+                                    <td>${per.nombres}</td>
+                                    <td>${per.apellidos}</td>
+                                    <td>${per.telefono}</td>
+                                    <td>${per.correo}</td>
+                                    <td>${per.area.descripcion}</td>
+                                    <td class="text-center">                                  
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar(${per.idp}, 'Personal', 'Listar',${per.id})"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>                        
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
-        </div>
-        <div class="footer-copyright">
-
-        </div>
+        </main>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
-        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
         <script src="js/funciones.js" type="text/javascript"></script>
-        <script>
-
-        </script>
+        <script src="js/datatable.js" type="text/javascript"></script>
+        <script src="js/script.js" type="text/javascript"></script>
         <script>
             $(document).ready(function () {
                 $('#myTable').DataTable();

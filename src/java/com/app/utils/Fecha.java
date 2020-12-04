@@ -30,7 +30,7 @@ public class Fecha {
     }
     
     public static void main(String[] args) {
-        System.out.println(Año());
+        System.out.println(Hora());
     }
     
    

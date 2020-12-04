@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2020 a las 02:33:03
+-- Tiempo de generación: 04-12-2020 a las 16:58:51
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -75,7 +75,13 @@ INSERT INTO `grado` (`IDGRADO`, `DESCRIPCION`) VALUES
 (1, 'PRIMERO'),
 (2, 'SEGUNDO'),
 (3, 'TERCERO'),
-(4, 'CUARTO');
+(4, 'CUARTO'),
+(5, 'QUINTO'),
+(6, 'SEXTO'),
+(7, 'I-3AÑOS'),
+(8, 'I-4AÑOS'),
+(9, 'I-5AÑOS'),
+(10, 'SELECCIONAR');
 
 -- --------------------------------------------------------
 
@@ -147,7 +153,7 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`IDPERSONA`, `IDTIPODOC`, `NRODOC`, `NOMBRES`, `APELLIDOS`, `TELEFONO`, `CORREO`) VALUES
-(1, 1, '12345672', 'ADMINISTRADOR', 'ADMIN', '988251450', 'admin@admin.edu.pe');
+(1, 1, '12345672', 'ADMINISTRADOR', 'DIRECTOR', '988251450', 'admin@admin.edu.pe');
 
 -- --------------------------------------------------------
 
@@ -178,7 +184,8 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`IDROL`, `DESCRIPCION`) VALUES
 (1, 'ADMIN'),
-(2, 'USUARIO');
+(2, 'USUARIO'),
+(3, 'ALUMNO');
 
 -- --------------------------------------------------------
 
@@ -211,15 +218,16 @@ CREATE TABLE `usuario` (
   `PASSWORD` varchar(50) DEFAULT NULL,
   `ESTADO` int(1) DEFAULT NULL,
   `IDPERSONA` int(11) DEFAULT NULL,
-  `IDROL` int(11) NOT NULL
+  `IDROL` int(11) NOT NULL,
+  `IDGRADO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`IDUSUARIO`, `USUARIO`, `PASSWORD`, `ESTADO`, `IDPERSONA`, `IDROL`) VALUES
-(1, 'admin', 'admin', 1, 1, 1);
+INSERT INTO `usuario` (`IDUSUARIO`, `USUARIO`, `PASSWORD`, `ESTADO`, `IDPERSONA`, `IDROL`, `IDGRADO`) VALUES
+(1, 'admin', 'admin', 1, 1, 3, 2);
 
 --
 -- Índices para tablas volcadas
@@ -302,7 +310,8 @@ ALTER TABLE `tipodoc`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`IDUSUARIO`),
   ADD KEY `USER-PERSONA` (`IDPERSONA`),
-  ADD KEY `USER-ROL` (`IDROL`);
+  ADD KEY `USER-ROL` (`IDROL`),
+  ADD KEY `USER-GRADO` (`IDGRADO`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -312,7 +321,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `apoderado`
 --
 ALTER TABLE `apoderado`
-  MODIFY `IDAPODERADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDAPODERADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `area`
@@ -324,19 +333,19 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `IDGRADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDGRADO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `IDHISTORIAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `IDHISTORIAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `IDMATRICULA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDMATRICULA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `parentesco`
@@ -348,7 +357,7 @@ ALTER TABLE `parentesco`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `IDPERSONA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34583;
+  MODIFY `IDPERSONA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34610;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`
@@ -360,7 +369,7 @@ ALTER TABLE `personal`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDROL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipodoc`
@@ -372,7 +381,7 @@ ALTER TABLE `tipodoc`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IDUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `IDUSUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Restricciones para tablas volcadas
@@ -417,6 +426,7 @@ ALTER TABLE `personal`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
+  ADD CONSTRAINT `USER-GRADO` FOREIGN KEY (`IDGRADO`) REFERENCES `grado` (`IDGRADO`),
   ADD CONSTRAINT `USER-PERSONA` FOREIGN KEY (`IDPERSONA`) REFERENCES `persona` (`IDPERSONA`),
   ADD CONSTRAINT `USER-ROL` FOREIGN KEY (`IDROL`) REFERENCES `rol` (`IDROL`);
 COMMIT;

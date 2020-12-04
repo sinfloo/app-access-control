@@ -72,8 +72,8 @@ public class ApoderadoImplement {
         try {
             listCombos(request);
             request.setAttribute("Title", "Actualización de Datos del Apoderado");
-            request.setAttribute("User", new DaoUsuario().getFindId(Integer.valueOf(request.getParameter("txtIdUser"))));
-            request.getRequestDispatcher("vistas/Registro.jsp").forward(request, response);
+            request.setAttribute("Apoderado", new DaoApoderado().getFindId(Integer.valueOf(request.getParameter("txtIdApo"))));
+            request.getRequestDispatcher("vistas/RegistroApoderado.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
             LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -86,6 +86,8 @@ public class ApoderadoImplement {
     }
 
     private static void listCombos(HttpServletRequest request) {
+        List<Usuario> usuarios = (List<Usuario>) new DaoUsuario().getAll();
+        request.setAttribute("Users", usuarios);
         List<Parentesco> roles = (List<Parentesco>) new DaoParentesco().getAll();
         request.setAttribute("Parentescos", roles);
         List<TipoDoc> tipos = (List<TipoDoc>) new DaoTipoDoc().getAll();
