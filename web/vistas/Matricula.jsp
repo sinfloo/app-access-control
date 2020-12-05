@@ -120,7 +120,7 @@
         </main>
 
     </div>
-    <!--MODAL PARA INGRESAR DOCUMENTO-->
+    <!--MODAL PARA INGRESAR DOC-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="Controlador?menu=Matricula" method="POST">
@@ -144,7 +144,51 @@
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
+    <!--REGISTRO DE PAGOS-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="Controlador?menu=Pago" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="padding-left: 30px;padding-right: 30px">
+                        <div class="form-group">
+                            <label for="tipooperacion">Tipo Operacion</label>
+                            <input type="text" value="PAGO" name="txtTipo" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="tipooperacion" class="bold">Usuario</label>
+                            <input type="hidden"  name="txtIdUser" value="${User.idUser}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <input type="text" value="${User.nombres} ${User.apellidos}" class="form-control form-control-sm" id="tipooperacion"  aria-describedby="emailHelp" readonly=""/>
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número de Ticket</label>
+                            <input type="text" maxlength="10" class="form-control form-control-sm"  name="txtNumero">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" class="form-control form-control-sm"  name="txtDescripcion" requerid="">
+                        </div>
+                        <div class="form-group">
+                            <label for="importe">Importe</label>
+                            <input type="text" class="form-control form-control-sm" name="txtImporte" requerid="" >
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="padding-left: 30px;padding-right: 30px">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="accion" value="Guardar" class="btn btn-primary">GUARDAR CAMBIOS</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>

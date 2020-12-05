@@ -153,8 +153,7 @@ public class UsuarioImplement {
         //int idper = Integer.valueOf(request.getParameter("txtIdPer"));
         try {
             double total=0.00;
-            List<Historial>historial=new DaoHistorial().getAll(iduser);
-            
+            List<Historial>historial=new DaoHistorial().getAll(iduser);            
             for (Historial h : historial) {
                 if(h.getOperacion().getTipooperacion()==1){
                     total=total+h.getOperacion().getImporte();
@@ -166,7 +165,7 @@ public class UsuarioImplement {
             request.setAttribute("User", new DaoUsuario().getFindId(iduser));
             request.setAttribute("total", total);
             request.setAttribute("nroticket", Fecha.Hora());
-            request.getRequestDispatcher("vistas/Historial.jsp").forward(request, response);
+            request.getRequestDispatcher("/vistas/Historial.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
