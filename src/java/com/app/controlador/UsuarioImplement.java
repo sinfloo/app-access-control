@@ -8,6 +8,7 @@ import com.app.dto.Historial;
 import com.app.dto.Rol;
 import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
+import com.app.utils.Fecha;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -163,6 +164,7 @@ public class UsuarioImplement {
             }
             request.setAttribute("User", new DaoUsuario().getFindId(iduser));
             request.setAttribute("total", total);
+            request.setAttribute("nroticket", Fecha.Hora());
             request.getRequestDispatcher("vistas/Historial.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);

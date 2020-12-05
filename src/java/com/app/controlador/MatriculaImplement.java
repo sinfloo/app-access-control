@@ -12,7 +12,6 @@ import com.app.dto.Grado;
 import com.app.dto.Historial;
 import com.app.dto.Matricula;
 import com.app.dto.Personal;
-import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
 import java.io.IOException;
 import java.util.List;

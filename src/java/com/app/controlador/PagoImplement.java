@@ -35,10 +35,11 @@ public class PagoImplement {
                     total = total - h.getOperacion().getImporte();
                 }
             }
-            //request.setAttribute("nroticket", Fecha.Hora());
-            request.setAttribute("User", new DaoUsuario().getFindId(iduser));
+            Usuario us=(Usuario)new DaoUsuario().getFindId(iduser);
+            request.setAttribute("User",us);
             request.setAttribute("total", total);
-            request.getRequestDispatcher("vistas/Historial.jsp").forward(request, response);
+            request.setAttribute("nroticket", Fecha.Hora());
+            request.getRequestDispatcher("/vistas/Historial.jsp").forward(request, response);
         } catch (ServletException | IOException ex) {
             LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }

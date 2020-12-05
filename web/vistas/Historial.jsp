@@ -164,7 +164,7 @@
                         </div>
                         <div class="form-group">
                             <label for="numero">Número de Ticket</label>
-                            <input type="text" value="${nroticket}"  maxlength="10" class="form-control form-control-sm"  name="txtNumero" required="">
+                            <input type="text" value="${nroticket}" readonly=""  maxlength="10" class="form-control form-control-sm"  name="txtNumero" required="">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
@@ -189,7 +189,7 @@
             <form action="Controlador?menu=Pago" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE DEUDA</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle" class="bold"><i class="fas fa-edit"></i> REGISTRO DE PAGO</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

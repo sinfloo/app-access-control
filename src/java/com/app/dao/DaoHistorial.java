@@ -4,6 +4,7 @@ import com.app.config.Conexion;
 import com.app.dto.Historial;
 import com.app.dto.Operacion;
 import com.app.dto.Usuario;
+import com.app.utils.Fecha;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,11 +50,12 @@ public class DaoHistorial {
         Connection con = Conexion.getConnection();
         String sql;
         PreparedStatement ps;
+        int tipo=us.getOperacion().getTipooperacion();
         try {
             sql = "INSERT INTO historial (TIPO,NROTICKET, FECHA, DESCRIPCION, IMPORTE, IDUSUARIO) VALUES(?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
-            ps.setInt(1, us.getOperacion().getTipooperacion());
-            ps.setString(2, us.getOperacion().getNroticket());
+            ps.setInt(1, tipo);
+            ps.setString(2, tipo==1?Fecha.Hora():us.getOperacion().getNroticket());
             ps.setString(3, us.getOperacion().getFecha());
             ps.setString(4, us.getOperacion().getDescripcion());
             ps.setDouble(5, us.getOperacion().getImporte());
