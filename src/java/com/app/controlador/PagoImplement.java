@@ -23,11 +23,10 @@ public class PagoImplement {
     private static final Logger LOGGER = Logger.getLogger(PagoImplement.class.getName());
 
     public static void executeListar(HttpServletRequest request, HttpServletResponse response) {
-         int iduser = Integer.valueOf(request.getParameter("txtIdUser"));
+        int iduser = Integer.valueOf(request.getParameter("txtIdUser"));
         try {
             double total = 0.00;
             List<Historial> historial = new DaoHistorial().getAll(iduser);
-            request.setAttribute("Historial", historial);
             for (Historial h : historial) {
                 if (h.getOperacion().getTipooperacion() == 1) {
                     total = total + h.getOperacion().getImporte();
@@ -35,8 +34,9 @@ public class PagoImplement {
                     total = total - h.getOperacion().getImporte();
                 }
             }
-            Usuario us=(Usuario)new DaoUsuario().getFindId(iduser);
-            request.setAttribute("User",us);
+            Usuario us = (Usuario) new DaoUsuario().getFindId(iduser);
+            request.setAttribute("Historial", historial);
+            request.setAttribute("User", us);
             request.setAttribute("total", total);
             request.setAttribute("nroticket", Fecha.Hora());
             request.getRequestDispatcher("/vistas/Historial.jsp").forward(request, response);
@@ -59,12 +59,12 @@ public class PagoImplement {
     public static void executeSave(HttpServletRequest request, HttpServletResponse response) {
         try {
             Historial h = new Historial();
-            int iduser=Integer.parseInt(request.getParameter("txtIdUser"));
-            String tipo=request.getParameter("txtTipo");
-            String ticket=request.getParameter("txtNumero");
-            String descripcion=request.getParameter("txtDescripcion");
-            double importe=Double.valueOf(request.getParameter("txtImporte"));
-            h.setOperacion(new Operacion(tipo.equals("DEUDA")?1:2, ticket, Fecha.FechaBD(), descripcion, importe));
+            int iduser = Integer.parseInt(request.getParameter("txtIdUser"));
+            String tipo = request.getParameter("txtTipo");
+            String ticket = request.getParameter("txtNumero");
+            String descripcion = request.getParameter("txtDescripcion");
+            double importe = Double.valueOf(request.getParameter("txtImporte"));
+            h.setOperacion(new Operacion(tipo.equals("DEUDA") ? 1 : 2, ticket, Fecha.FechaBD(), descripcion, importe));
             h.setUsuario(new Usuario(iduser));
             new DaoHistorial().add(h);
             request.getRequestDispatcher("Controlador?menu=Pago&accion=Listar").forward(request, response);

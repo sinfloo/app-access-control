@@ -154,7 +154,7 @@ public class UsuarioImplement {
         try {
             double total=0.00;
             List<Historial>historial=new DaoHistorial().getAll(iduser);
-            request.setAttribute("Historial", historial);
+            
             for (Historial h : historial) {
                 if(h.getOperacion().getTipooperacion()==1){
                     total=total+h.getOperacion().getImporte();
@@ -162,6 +162,7 @@ public class UsuarioImplement {
                     total=total-h.getOperacion().getImporte();
                 }                
             }
+            request.setAttribute("Historial", historial);
             request.setAttribute("User", new DaoUsuario().getFindId(iduser));
             request.setAttribute("total", total);
             request.setAttribute("nroticket", Fecha.Hora());
