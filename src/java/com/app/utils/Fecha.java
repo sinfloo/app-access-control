@@ -29,11 +29,7 @@ public class Fecha {
         fecha = sdf.format(calendar.getTime());
         return fecha;
     }
-    
-    public static void main(String[] args) {
-        System.out.println(Hora());
-    }
-    
+      
    
 
 }
