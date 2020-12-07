@@ -25,9 +25,9 @@ public class ControladorLogin extends HttpServlet {
                 Usuario u = new Usuario();
                 u.setUsuario(request.getParameter("Usuario"));
                 u.setPassword(request.getParameter("Password"));
-                //u = new DaoUsuario().validateUser(u);
-                u.setNombres("Admin");
-                u.setApellidos("Admin");
+                u = new DaoUsuario().validateUser(u);
+//                u.setNombres("Admin");
+//                u.setApellidos("Admin");
                 if (u != null && u.getNombres() != null && !"".equals(u.getApellidos())) {
                     session.setAttribute("Usuario", u);
                     request.getRequestDispatcher("Home.jsp").forward(request, response);

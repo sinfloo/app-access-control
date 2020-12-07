@@ -9,15 +9,15 @@ public class Conexion {
 
     private final static Logger LOGGER = Logger.getLogger(Conexion.class.getName());
 
-    private static final String URL = "jdbc:mysql://35.199.113.230:3306/bd_controlaccess";
-    private static final String USER = "root";
-    private static final String PASS = "bdcontrolaccess";
+    private static final String URL = "jdbc:mysql://154.16.171.89:16415/bd_controlaccess";
+    private static final String USER = "Admin";
+    private static final String PASS = "bdcontrolaccess$";
 
     private static Connection con;
     private static Conexion conexion;
     private Conexion() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(URL, USER, PASS);
             if (con != null) {
                 LOGGER.log(Level.INFO, "Database connection is successfull!!");
@@ -43,4 +43,5 @@ public class Conexion {
             }
         }
     }
+   
 }
