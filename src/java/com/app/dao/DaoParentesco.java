@@ -22,7 +22,7 @@ public class DaoParentesco implements IMantenimiento {
         List<Parentesco> parentescos = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM PARENTESCO";
+            String sql = "SELECT * FROM parentesco";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

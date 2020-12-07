@@ -22,7 +22,7 @@ public class DaoHistorial {
         List<Historial> lista = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM HISTORIAL WHERE IDUSUARIO=" + idUsuario;
+            String sql = "SELECT * FROM historial WHERE IDUSUARIO=" + idUsuario;
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

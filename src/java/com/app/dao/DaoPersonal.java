@@ -1,13 +1,9 @@
 package com.app.dao;
 
 import com.app.config.Conexion;
-import com.app.controlador.PersonalImplement;
-import com.app.dto.Apoderado;
 import com.app.dto.Area;
-import com.app.dto.Parentesco;
 import com.app.dto.Personal;
 import com.app.dto.TipoDoc;
-import com.app.dto.Usuario;
 import com.app.interfaces.IMantenimiento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -84,7 +80,7 @@ public class DaoPersonal implements IMantenimiento {
                 rs.next();
                 idPersona = rs.getInt("IDPERSONA");
             }
-            sql = "INSERT INTO PERSONAL (IDAREA,IDPERSONA) VALUES(?,?)";
+            sql = "INSERT INTO personal (IDAREA,IDPERSONA) VALUES(?,?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1, us.getArea().getId());
             ps.setInt(2, idPersona);
@@ -108,11 +104,11 @@ public class DaoPersonal implements IMantenimiento {
         Connection con = Conexion.getConnection();
         String sql;
         try {
-            sql = "DELETE FROM PERSONAL WHERE IDPERSONAL=" + id;
+            sql = "DELETE FROM personal WHERE IDPERSONAL=" + id;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
 
-            sql = "DELETE FROM PERSONA WHERE IDPERSONA=" + idper;
+            sql = "DELETE FROM persona WHERE IDPERSONA=" + idper;
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {

@@ -1,7 +1,6 @@
 package com.app.dao;
 
 import com.app.config.Conexion;
-import com.app.dao.DaoRol;
 import com.app.dto.Area;
 import com.app.interfaces.IMantenimiento;
 import java.sql.Connection;
@@ -22,7 +21,7 @@ public class DaoArea implements IMantenimiento {
         List<Area> areas = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM AREA";
+            String sql = "SELECT * FROM area";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

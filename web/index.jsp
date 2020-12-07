@@ -21,12 +21,12 @@
                                 <div class="row">
                                     <div class="input-field col s12 m12">
                                         <i class="material-icons prefix">account_circle</i>
-                                        <input id="icon_user" type="text" name="Usuario" value="admin" class="validate">
+                                        <input id="icon_user" type="text" name="txtUsuario"  class="validate">
                                         <label for="icon_user">Usuario</label>
                                     </div>
                                     <div class="input-field col s12 m12">
                                         <i class="material-icons prefix">lock</i>
-                                        <input id="icon_pass" type="password" name="Password" value="admin" class="validate">
+                                        <input id="icon_pass" type="password" name="txtPassword"  class="validate">
                                         <label for="icon_pass">Password</label>
                                     </div>
                                 </div>                                

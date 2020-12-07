@@ -19,9 +19,9 @@ public class DaoUsuario implements IMantenimiento {
     private final static Logger LOGGER = Logger.getLogger(DaoUsuario.class.getName());
 
     public Usuario validateUser(Usuario u) {
-        String sql = "SELECT u.IDUSUARIO,U.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
+        String sql = "SELECT u.IDUSUARIO,u.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
                 + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION"
-                + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN tipodoc t"
+                + " FROM usuario u INNER JOIN persona p INNER JOIN rol r INNER JOIN tipodoc t"
                 + " ON u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and t.IDTIPODOC=p.IDTIPODOC"
                 + " WHERE u.USUARIO='" + u.getUsuario() + "' AND u.PASSWORD='" + u.getPassword() + "'";
 
@@ -55,9 +55,9 @@ public class DaoUsuario implements IMantenimiento {
         List<Usuario> listUsers = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT u.IDUSUARIO,U.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
+            String sql = "SELECT u.IDUSUARIO,u.USUARIO,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
                     + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION,p.IDPERSONA,p.IDTIPODOC,t.TIPO,g.DESCRIPCION"
-                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN TIPODOC t INNER JOIN grado g"
+                    + " FROM usuario u INNER JOIN persona p INNER JOIN rol r INNER JOIN tipodoc t INNER JOIN grado g"
                     + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDTIPODOC=t.IDTIPODOC"
                     + " AND u.IDGRADO=g.IDGRADO ORDER BY u.IDUSUARIO";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class DaoUsuario implements IMantenimiento {
             while (rs.next()) {
                 Usuario u = new Usuario();
                 u.setIdUser(rs.getInt("u.IDUSUARIO"));
-                u.setUsuario(rs.getString("U.USUARIO"));
+                u.setUsuario(rs.getString("u.USUARIO"));
                 u.setNombres(rs.getString("p.NOMBRES"));
                 u.setApellidos(rs.getString("p.APELLIDOS"));
                 u.setNrodoc(rs.getString("p.NRODOC"));
@@ -90,9 +90,9 @@ public class DaoUsuario implements IMantenimiento {
         List<Usuario> listUsers = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT u.IDUSUARIO,U.USUARIO,u.PASSWORD,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
+            String sql = "SELECT u.IDUSUARIO,u.USUARIO,u.PASSWORD,p.NOMBRES,p.APELLIDOS,p.NRODOC,"
                     + " p.TELEFONO,p.CORREO,r.IDROL,r.DESCRIPCION,p.IDPERSONA,p.IDTIPODOC,t.TIPO,g.DESCRIPCION"
-                    + " FROM USUARIO u INNER JOIN persona p INNER JOIN rol r INNER JOIN TIPODOC t INNER JOIN grado g"
+                    + " FROM usuario u INNER JOIN persona p INNER JOIN rol r INNER JOIN tipodoc t INNER JOIN grado g"
                     + " where u.IDPERSONA=p.IDPERSONA AND u.IDROL=r.IDROL and p.IDTIPODOC=t.IDTIPODOC"
                     + " AND u.IDGRADO=g.IDGRADO ORDER BY u.IDUSUARIO";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class DaoUsuario implements IMantenimiento {
             while (rs.next()) {
                 Usuario u = new Usuario();
                 u.setIdUser(rs.getInt("u.IDUSUARIO"));
-                u.setUsuario(rs.getString("U.USUARIO"));
+                u.setUsuario(rs.getString("u.USUARIO"));
                 u.setPassword(rs.getString("u.PASSWORD"));
                 u.setNombres(rs.getString("p.NOMBRES"));
                 u.setApellidos(rs.getString("p.APELLIDOS"));
@@ -130,7 +130,7 @@ public class DaoUsuario implements IMantenimiento {
         try {
             String sql = "SELECT p.IDPERSONA,p.IDTIPODOC,p.NRODOC,p.NOMBRES,p.APELLIDOS,"
                     + " p.TELEFONO,p.CORREO,u.IDUSUARIO,u.USUARIO,u.PASSWORD,u.ESTADO,u.IDROL"
-                    + " FROM USUARIO u INNER JOIN persona p"
+                    + " FROM usuario u INNER JOIN persona p"
                     + " where u.IDPERSONA=p.IDPERSONA AND u.IDUSUARIO=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -241,11 +241,11 @@ public class DaoUsuario implements IMantenimiento {
         Connection con = Conexion.getConnection();
         String sql;
         try {
-            sql = "DELETE FROM USUARIO WHERE IDUSUARIO=" + id;
+            sql = "DELETE FROM usuario WHERE IDUSUARIO=" + id;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
 
-            sql = "DELETE FROM PERSONA WHERE IDPERSONA=" + idper;
+            sql = "DELETE FROM persona WHERE IDPERSONA=" + idper;
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -291,7 +291,7 @@ public class DaoUsuario implements IMantenimiento {
         try {
             String sql = "SELECT p.IDPERSONA,p.IDTIPODOC,p.NRODOC,p.NOMBRES,p.APELLIDOS,"
                     + " p.TELEFONO,p.CORREO,u.IDUSUARIO,u.USUARIO,u.PASSWORD,u.ESTADO,u.IDROL"
-                    + " FROM USUARIO u INNER JOIN persona p"
+                    + " FROM usuario u INNER JOIN persona p"
                     + " where u.IDPERSONA=p.IDPERSONA AND p.NRODOC=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, documento);

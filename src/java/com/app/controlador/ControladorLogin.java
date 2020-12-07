@@ -23,8 +23,8 @@ public class ControladorLogin extends HttpServlet {
         switch (accion) {
             case "Login":
                 Usuario u = new Usuario();
-                u.setUsuario(request.getParameter("Usuario"));
-                u.setPassword(request.getParameter("Password"));
+                u.setUsuario(request.getParameter("txtUsuario"));
+                u.setPassword(request.getParameter("txtPassword"));
                 u = new DaoUsuario().validateUser(u);
 //                u.setNombres("Admin");
 //                u.setApellidos("Admin");
@@ -59,15 +59,6 @@ public class ControladorLogin extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

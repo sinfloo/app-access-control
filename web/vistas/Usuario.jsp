@@ -72,7 +72,7 @@
         <main>
             <ul class="menu-social">
                 <li><a href="http://www.youtube.com/"target="_blank"><img class="img" src="img/youtube.png" alt="">Youtube</a></li>
-                <li><a href="http://www.facebook.com"target="_blank"><img class="img" src="img/facebook.png" alt="">Facebook</a></li>
+                <li><a href="https://www.facebook.com/santa.ines.5682"target="_blank"><img class="img" src="img/facebook.png" alt="">Facebook</a></li>
                 <li><a href="https://google.com/"target="_blank"><img class="img" src="img/google.png" alt="">Google</a></li>
                 <li><a href="https://twitter.com/"target="_blank"><img class="img" src="img/twitter.png" alt="">Twitter</a></li>
             </ul>                   

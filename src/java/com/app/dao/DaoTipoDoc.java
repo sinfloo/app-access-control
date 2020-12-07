@@ -2,7 +2,6 @@
 package com.app.dao;
 
 import com.app.config.Conexion;
-import com.app.dto.Rol;
 import com.app.dto.TipoDoc;
 import com.app.interfaces.IMantenimiento;
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class DaoTipoDoc implements IMantenimiento{
          List<TipoDoc> tipos = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM TIPODOC";
+            String sql = "SELECT * FROM tipodoc";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

@@ -4,8 +4,6 @@ import com.app.config.Conexion;
 import com.app.dto.Grado;
 import com.app.dto.Historial;
 import com.app.dto.Matricula;
-import com.app.dto.Rol;
-import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
 import com.app.interfaces.IMantenimiento;
 import com.app.utils.Fecha;
@@ -84,7 +82,7 @@ public class DaoMatricula implements IMantenimiento {
                 rs.next();
                 idHistorial = rs.getInt("IDHISTORIAL");
             }            
-            sql = "INSERT INTO MATRICULA (YEAR,IDHISTORIAL, IDUSUARIO, IDGRADO) VALUES(?,?,?,?)";
+            sql = "INSERT INTO matricula (YEAR,IDHISTORIAL, IDUSUARIO, IDGRADO) VALUES(?,?,?,?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, us.getYear());
             ps.setInt(2, idHistorial);
@@ -92,7 +90,7 @@ public class DaoMatricula implements IMantenimiento {
             ps.setInt(4, us.getGrado().getId());
             r=ps.executeUpdate();
             
-            sql = "UPDATE USUARIO set IDGRADO=? WHERE IDUSUARIO=?";
+            sql = "UPDATE usuario set IDGRADO=? WHERE IDUSUARIO=?";
             ps = con.prepareStatement(sql);
             ps.setInt(1, us.getGrado().getId());
             ps.setInt(2, us.getUsuario().getIdUser());            

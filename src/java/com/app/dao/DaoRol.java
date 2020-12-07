@@ -21,7 +21,7 @@ public class DaoRol implements IMantenimiento {
         List<Rol> roles = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM ROL";
+            String sql = "SELECT * FROM rol";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -42,7 +42,7 @@ public class DaoRol implements IMantenimiento {
         List<Rol> roles = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM ROL";
+            String sql = "SELECT * FROM rol";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

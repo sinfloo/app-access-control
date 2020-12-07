@@ -97,7 +97,7 @@ public class UsuarioImplement {
             u.setCorreo(request.getParameter("txtCorreo"));
             u.setUsuario(request.getParameter("txtUsuario"));
             u.setPassword(u.getUsuario()!=null?u.getUsuario().concat("2020"):null);
-            u.setRol(new Rol(Integer.valueOf("3"), null));
+            u.setRol(new Rol(Integer.valueOf(request.getParameter("txtRol")), null));
             if (u.getIdUser()==0&&u.getId()==0) {
                 new DaoUsuario().add(u);
             } else {

@@ -72,7 +72,7 @@
         <main>
             <ul class="menu-social">
                 <li><a href="http://www.youtube.com/"target="_blank"><img class="img" src="img/youtube.png" alt="">Youtube</a></li>
-                <li><a href="http://www.facebook.com"target="_blank"><img class="img" src="img/facebook.png" alt="">Facebook</a></li>
+                <li><a href="https://www.facebook.com/santa.ines.5682"target="_blank"><img class="img" src="img/facebook.png" alt="">Facebook</a></li>
                 <li><a href="https://google.com/"target="_blank"><img class="img" src="img/google.png" alt="">Google</a></li>
                 <li><a href="https://twitter.com/"target="_blank"><img class="img" src="img/twitter.png" alt="">Twitter</a></li>
             </ul>                   
@@ -93,9 +93,12 @@
                                 <th>APELLIDOS</th>
                                 <th>TELEFONO</th>
                                 <th>CORREO</th>
-                                <th>USUARIO</th>
-                                <th>PASSWORD</th>
-                                <th>ACCION</th>
+                                <th>ROL</th>
+                                    <c:if test="${Usuario.rol.id==1}">
+                                    <th>USUARIO</th>
+                                    <th>PASSWORD</th>                                    
+                                    <th>ACCION</th>
+                                    </c:if>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,16 +110,23 @@
                                     <td>${us.apellidos}</td>
                                     <td>${us.telefono}</td>
                                     <td>${us.correo}</td>
-                                    <td>${us.usuario}</td>
-                                    <td>${us.password}</td>
-                                    <td class="d-flex">                                  
-                                        <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idUser}, 'Configuracion', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
-                                        <form class="ml-1" action="Controlador?menu=Configuracion" method="POST">
-                                            <input type="hidden" name="txtIdUser" value="${us.idUser}">
-                                            <input type="hidden" name="txtIdPer" value="${us.id}">
-                                            <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
-                                        </form>                               
-                                    </td>
+                                    <td>${us.rol.descripcion}</td>
+                                    <c:if test="${Usuario.rol.id==1}">
+                                        <td>${us.usuario}</td>
+                                        <td>${us.password}</td>
+                                    </c:if>
+                                    <c:if test="${Usuario.rol.id==1}">
+                                        <td class="d-flex">                                  
+                                            <button class="btn btn-danger btn-sm" onclick="eliminar(${us.idUser}, 'Configuracion', 'Listar',${us.id})"><i class="fas fa-trash-alt"></i></button>
+                                            <form class="ml-1" action="Controlador?menu=Configuracion" method="POST">
+                                                <input type="hidden" name="txtIdUser" value="${us.idUser}">
+                                                <input type="hidden" name="txtIdPer" value="${us.id}">
+
+                                                <button class="btn btn-warning btn-sm" type="submit" name="accion" value="Editar"><i class="fas fa-edit"></i></button>
+
+                                            </form>                               
+                                        </td>
+                                    </c:if>
                                 </tr>
                             </c:forEach>                        
                         </tbody>

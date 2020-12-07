@@ -3,7 +3,6 @@ package com.app.dao;
 import com.app.config.Conexion;
 import com.app.dto.Apoderado;
 import com.app.dto.Parentesco;
-import com.app.dto.Rol;
 import com.app.dto.TipoDoc;
 import com.app.dto.Usuario;
 import com.app.interfaces.IMantenimiento;
@@ -29,7 +28,7 @@ public class DaoApoderado implements IMantenimiento {
                     + " p.TELEFONO,p.CORREO,a.IDAPODERADO,a.IDPARENTESCO,pa.PARENTESCO,"
                     + " p.IDTIPODOC,t.TIPO,a.IDUSUARIO"
                     + " FROM apoderado a INNER JOIN persona p INNER JOIN parentesco pa "
-                    + " INNER JOIN tipodoc t INNER JOIN USUARIO u"
+                    + " INNER JOIN tipodoc t INNER JOIN usuario u"
                     + " where a.IDPERSONA=p.IDPERSONA AND a.IDPARENTESCO=pa.IDPARENTESCO"
                     + " AND p.IDTIPODOC=t.IDTIPODOC AND u.IDUSUARIO=a.IDUSUARIO ORDER BY a.IDAPODERADO";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -70,7 +69,7 @@ public class DaoApoderado implements IMantenimiento {
                     + " p.TELEFONO,p.CORREO,a.IDAPODERADO,a.IDPARENTESCO,pa.PARENTESCO,"
                     + " p.IDTIPODOC,t.TIPO,a.IDUSUARIO"
                     + " FROM apoderado a INNER JOIN persona p INNER JOIN parentesco pa "
-                    + " INNER JOIN tipodoc t INNER JOIN USUARIO u"
+                    + " INNER JOIN tipodoc t INNER JOIN usuario u"
                     + " where a.IDPERSONA=p.IDPERSONA AND a.IDPARENTESCO=pa.IDPARENTESCO"
                     + " AND p.IDTIPODOC=t.IDTIPODOC AND u.IDUSUARIO=a.IDUSUARIO and a.IDAPODERADO=?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -124,7 +123,7 @@ public class DaoApoderado implements IMantenimiento {
                 rs.next();
                 idPersona = rs.getInt("IDPERSONA");
             }
-            sql = "INSERT INTO APODERADO (IDPARENTESCO,IDPERSONA,IDUSUARIO) VALUES(?,?,?)";
+            sql = "INSERT INTO apoderado (IDPARENTESCO,IDPERSONA,IDUSUARIO) VALUES(?,?,?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1, us.getParentesco().getId());
             ps.setInt(2, idPersona);
@@ -180,11 +179,11 @@ public class DaoApoderado implements IMantenimiento {
         Connection con = Conexion.getConnection();
         String sql;
         try {
-            sql = "DELETE FROM APODERADO WHERE IDAPODERADO=" + id;
+            sql = "DELETE FROM apoderado WHERE IDAPODERADO=" + id;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
 
-            sql = "DELETE FROM PERSONA WHERE IDPERSONA=" + idper;
+            sql = "DELETE FROM persona WHERE IDPERSONA=" + idper;
             ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException e) {

@@ -21,7 +21,7 @@ public class DaoGrado implements IMantenimiento {
         List<Grado> grados = new ArrayList<>();
         Connection con = Conexion.getConnection();
         try {
-            String sql = "SELECT * FROM GRADO";
+            String sql = "SELECT * FROM grado";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
