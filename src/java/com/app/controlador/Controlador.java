@@ -22,15 +22,36 @@ public class Controlador extends HttpServlet {
                    break;
                 case "Nuevo":                    
                     UsuarioImplement.executeNew(request, response);
-                    break;
-                case "Agregar":
-                    UsuarioImplement.executeAdd(request, response);
-                    break;
+                    break;                
                 case "Editar":
                     UsuarioImplement.executeEdit(request, response);
                     break;
-                case "Actualizar":
-                    UsuarioImplement.executeUpdate(request, response);
+                case "Guardar":
+                    UsuarioImplement.executeSave(request, response);
+                    break;
+                case "Eliminar":
+                    UsuarioImplement.executeDelete(request, response);
+                    break;
+                case "VerHistorialPago":
+                    UsuarioImplement.executeVerHistorial(request, response);
+                    break;
+                default:
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }
+        if (menu != null && menu.equals("Configuracion")) {
+            switch (accion) {
+                case "Listar":
+                   UsuarioImplement.executeListar2(request, response);
+                   break;
+                case "Nuevo":                    
+                    UsuarioImplement.executeNew2(request, response);
+                    break;                
+                case "Editar":
+                    UsuarioImplement.executeEdit2(request, response);
+                    break;
+                case "Guardar":
+                    UsuarioImplement.executeSave2(request, response);
                     break;
                 case "Eliminar":
                     UsuarioImplement.executeDelete(request, response);
@@ -42,14 +63,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Apoderado")) {
             switch (accion) {
                 case "Listar":
-                    break;
-                case "Agregar":
-                    break;
+                   ApoderadoImplement.executeListar(request, response);
+                   break;
+                case "Nuevo":                    
+                    ApoderadoImplement.executeNew(request, response);
+                    break;                
                 case "Editar":
+                    ApoderadoImplement.executeEdit(request, response);
                     break;
-                case "Actualizar":
+                case "Guardar":
+                    ApoderadoImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
+                    ApoderadoImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -58,14 +84,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Matricula")) {
             switch (accion) {
                 case "Listar":
+                   MatriculaImplement.executeListar(request, response);
+                   break;
+                case "Nuevo":                    
+                    MatriculaImplement.executeNew(request, response);
+                    break;                
+                case "IniciarMatricula":
+                    MatriculaImplement.executeStartMatricula(request, response);
                     break;
-                case "Agregar":
-                    break;
-                case "Editar":
-                    break;
-                case "Actualizar":
+                case "Guardar":
+                    MatriculaImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
+                    MatriculaImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -74,14 +105,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Personal")) {
             switch (accion) {
                 case "Listar":
-                    break;
-                case "Agregar":
-                    break;
+                   PersonalImplement.executeListar(request, response);
+                   break;
+                case "Nuevo":                    
+                    PersonalImplement.executeNew(request, response);
+                    break;                
                 case "Editar":
+                    PersonalImplement.executeEdit(request, response);
                     break;
-                case "Actualizar":
+                case "Guardar":
+                    PersonalImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
+                    PersonalImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -90,34 +126,19 @@ public class Controlador extends HttpServlet {
         if (menu != null && menu.equals("Pago")) {
             switch (accion) {
                 case "Listar":
-                    break;
-                case "Agregar":
-                    break;
+                   PagoImplement.executeListar(request, response);
+                   break;
+                case "Nuevo":                    
+                    PagoImplement.executeNew(request, response);
+                    break;                
                 case "Editar":
+                    PagoImplement.executeEdit(request, response);
                     break;
-                case "Actualizar":
+                case "Guardar":
+                    PagoImplement.executeSave(request, response);
                     break;
                 case "Eliminar":
-                    break;
-                case "Reporte":
-                    break;
-                default:
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        }
-        if (menu != null && menu.equals("Deuda")) {
-            switch (accion) {
-                case "Listar":
-                    break;
-                case "Agregar":
-                    break;
-                case "Editar":
-                    break;
-                case "Actualizar":
-                    break;
-                case "Eliminar":
-                    break;
-                case "Reporte":
+                    PagoImplement.executeDelete(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("index.jsp").forward(request, response);

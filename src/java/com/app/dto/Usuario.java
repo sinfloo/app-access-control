@@ -4,7 +4,15 @@ public class Usuario extends Persona{
     private int idUser;
     private String usuario;
     private String password;
+    private String grado;
     private Rol rol;
+
+    public Usuario(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public Usuario() {
+    }
 
     public int getIdUser() {
         return idUser;
@@ -30,6 +38,14 @@ public class Usuario extends Persona{
         this.password = password;
     }
 
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
     public Rol getRol() {
         return rol;
     }
@@ -38,6 +54,7 @@ public class Usuario extends Persona{
         this.rol = rol;
     }
 
+    
     
     
 }

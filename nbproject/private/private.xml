@@ -12,12 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/src/java/com/app/controlador/UsuarioImplement.java</file>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/web/vistas/Usuario.jsp</file>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/web/js/funciones.js</file>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/web/vistas/Registro.jsp</file>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/src/java/com/app/dao/DaoUsuario.java</file>
-            <file>file:/C:/Users/petuel/Documents/NetBeansProjects/app-access-control/src/java/com/app/dto/Persona.java</file>
+            <file>file:/D:/SinFloo/PROYECTO_TUESTA2/app-access-control/web/vistas/Usuario.jsp</file>
+            <file>file:/D:/SinFloo/PROYECTO_TUESTA2/app-access-control/web/vistas/Apoderado.jsp</file>
         </group>
     </open-files>
 </project-private>

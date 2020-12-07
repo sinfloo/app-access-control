@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 public class Fecha {  
-    private static final Calendar calendar = Calendar.getInstance();    
+    private static Calendar calendar = Calendar.getInstance();;
     private static String fecha;
 
     public static String Fecha() {
@@ -18,6 +18,18 @@ public class Fecha {
         fecha = sdf.format(calendar.getTime());
         return fecha;
     }
+    public static String Hora() {
+        calendar = Calendar.getInstance(); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        fecha = sdf.format(calendar.getTime());
+        return fecha;
+    }
+    public static String Año() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        fecha = sdf.format(calendar.getTime());
+        return fecha;
+    }
+      
    
 
 }

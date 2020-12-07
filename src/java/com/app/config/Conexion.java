@@ -9,7 +9,7 @@ public class Conexion {
 
     private final static Logger LOGGER = Logger.getLogger(Conexion.class.getName());
 
-    private static final String URL = "jdbc:mysql://localhost:3306/bd_controlaccess";
+    private static final String URL = "jdbc:mysql://192.168.0.106:3306/bd_controlaccess";
     private static final String USER = "root";
     private static final String PASS = "";
 
@@ -23,7 +23,6 @@ public class Conexion {
                 LOGGER.log(Level.INFO, "Database connection is successfull!!");
             }
         } catch (ClassNotFoundException | SQLException e) {
-            close(con);
             LOGGER.log(Level.INFO, e.getMessage(), e);
         }
     }
