@@ -9,9 +9,9 @@ public class Conexion {
 
     private final static Logger LOGGER = Logger.getLogger(Conexion.class.getName());
 
-    private static final String URL = "jdbc:mysql://192.168.0.106:3306/bd_controlaccess";
+    private static final String URL = "jdbc:mysql://35.199.113.230:3306/bd_controlaccess";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "bdcontrolaccess";
 
     private static Connection con;
     private static Conexion conexion;
@@ -43,4 +43,4 @@ public class Conexion {
             }
         }
     }
-}
+ 
